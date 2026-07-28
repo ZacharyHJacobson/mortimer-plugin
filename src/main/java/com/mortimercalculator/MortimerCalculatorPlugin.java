@@ -12,10 +12,12 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @PluginDescriptor(
-	name = "Mortimer Calculator"
+		name = "Mortimer Calculator"
 )
 public class MortimerCalculatorPlugin extends Plugin
 {
@@ -25,7 +27,7 @@ public class MortimerCalculatorPlugin extends Plugin
 	@Inject
 	private MortimerCalculatorConfig config;
 
-	 public class TaskStats{
+	public class TaskStats{
 		int assign_min;
 		int assign_max;
 		int travel_time;
@@ -36,12 +38,208 @@ public class MortimerCalculatorPlugin extends Plugin
 		{
 			switch(task_name)
 			{
+				case "Crawling Hands":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 7;
+					kills_per_hour = 1565;
+					superiors_per_heart = 1376;
+					break;
+				case "Cave Crawlers":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 5;
+					kills_per_hour = 1384;
+					superiors_per_heart = 1336;
+					break;
+				case "Banshees":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 27;
+					kills_per_hour = 1333;
+					superiors_per_heart = 1288;
+					break;
+				case "Rockslugs":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 32;
+					kills_per_hour = 1125;
+					superiors_per_heart = 1240;
+					break;
+				case "Cockatrice":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 39;
+					kills_per_hour = 818;
+					superiors_per_heart = 1192;
+					break;
+				case "Pyrefiends":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 21;
+					kills_per_hour = 857;
+					superiors_per_heart = 1144;
+					break;
+				case "Infernal Mages":
+					assign_min = 35;
+					assign_max = 50;
+					travel_time = 47;
+					kills_per_hour = 642;
+					superiors_per_heart = 960;
+					break;
+				case "Bloodveld":
+					assign_min = 120;
+					assign_max = 180;
+					travel_time = 45;
+					kills_per_hour = 600;
+					superiors_per_heart = 896;
+					break;
+				case "Gryphons":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 56;
+					kills_per_hour = 600;
+					superiors_per_heart = 888;
+					break;
+				case "Jellies":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 44;
+					kills_per_hour = 840;
+					superiors_per_heart = 872;
+					break;
+				case "Custodian Stalkers":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 86;
+					kills_per_hour = 440;
+					superiors_per_heart = 504;
+					break;
+				case "Turoth":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 50;
+					kills_per_hour = 383;
+					superiors_per_heart = 832;
+					break;
+				case "Warped Creatures":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 70;
+					kills_per_hour = 457;
+					superiors_per_heart = 816;
+					break;
+				case "Cave Horrors":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 75;
+					kills_per_hour = 610;
+					superiors_per_heart = 784;
+					break;
+				case "Aberrant Spectres":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 34;
+					kills_per_hour = 500;
+					superiors_per_heart = 760;
+					break;
+				case "Basilisks":
+					assign_min = 40;
+					assign_max = 60;
+					travel_time = 38;
+					kills_per_hour = 450;
+					superiors_per_heart = 1024;
+					break;
+				case "Wyrms":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 45;
+					kills_per_hour = 250;
+					superiors_per_heart = 728;
+					break;
+				case "Dust Devils":
+					assign_min = 120;
+					assign_max = 180;
+					travel_time = 49;
+					kills_per_hour = 780;
+					superiors_per_heart = 680;
+					break;
+				case "Kurask":
+					assign_min = 40;
+					assign_max = 60;
+					travel_time = 70;
+					kills_per_hour = 290;
+					superiors_per_heart = 600;
+					break;
+				case "Venators":
+					assign_min = 120;
+					assign_max = 180;
+					travel_time = 60;
+					kills_per_hour = 107;
+					superiors_per_heart = 536;
 				case "Gargoyles":
 					assign_min = 120;
 					assign_max = 180;
 					travel_time = 17;
 					kills_per_hour = 380;
 					superiors_per_heart = 520;
+					break;
+				case "Aquanites":
+					assign_min = 40;
+					assign_max = 60;
+					travel_time = 50;
+					kills_per_hour = 200;
+					superiors_per_heart = 472;
+					break;
+				case "Nechryael":
+					assign_min = 150;
+					assign_max = 200;
+					travel_time = 42;
+					kills_per_hour = 520;
+					superiors_per_heart = 440;
+					break;
+				case "Drakes":
+					assign_min = 40;
+					assign_max = 60;
+					travel_time = 55;
+					kills_per_hour = 155;
+					superiors_per_heart = 368;
+					break;
+				case "Abyssal Demons":
+					assign_min = 120;
+					assign_max = 180;
+					travel_time = 47;
+					kills_per_hour = 650;
+					superiors_per_heart = 352;
+					break;
+				case "Dark Beasts":
+					assign_min = 40;
+					assign_max = 60;
+					travel_time = 17;
+					kills_per_hour = 205;
+					superiors_per_heart = 256;
+					break;
+				case "Araxytes":
+					assign_min = 120;
+					assign_max = 180;
+					travel_time = 20;
+					kills_per_hour = 769;
+					superiors_per_heart = 224;
+					break;
+				case "Smoke Devils":
+					assign_min = 80;
+					assign_max = 120;
+					travel_time = 50;
+					kills_per_hour = 800;
+					superiors_per_heart = 200;
+					break;
+				case "Hydras":
+					assign_min = 150;
+					assign_max = 200;
+					travel_time = 45;
+					kills_per_hour = 149;
+					superiors_per_heart = 160;
+					break;
 			}
 		}
 	}
@@ -51,13 +249,15 @@ public class MortimerCalculatorPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
-		String task_name = "Gargoyles";		//! get from master
+		List<Float> ticks_wasted = new ArrayList<Float>();
+		List<String> task_names = new ArrayList<String>();
+		task_names.add("Gargoyles");		//! get from master
 		int length_modifier = 0;			//! get from master
 		int drop_modifier = 0;				//!get from master
-		TaskStats task_stats = new TaskStats(task_name);
-		float ticks_wasted = calcTicksWasted(task_stats, 0, 0, 0, false);	//! modifiers
+		TaskStats task_stats = new TaskStats(task_names.get(0));
+		ticks_wasted.add(calcTicksWasted(task_stats, 0, 0, 0, false));	//! modifiers
 		//! compare the three
-        log.debug("ticks wasted: {}", ticks_wasted);	//! display output highlighting one of three UI spots
+		log.debug("ticks wasted: {}", ticks_wasted.get(0));	//! display output highlighting one of three UI spots
 		//! give skip advice based on number assigned
 	}
 
@@ -69,7 +269,6 @@ public class MortimerCalculatorPlugin extends Plugin
 		float tasks_per_heart = tasksPerHeart(task_stats.superiors_per_heart, number_killed_with_bracelet, drop_modifier);
 		int time_per_heart = config.timeToHeart();
 		float task_time_per_heart = task_completion_time * tasks_per_heart;
-		log.debug("tl: " + number_killed_with_bracelet + ", tct: " + task_completion_time + ", tph: " + tasks_per_heart + ", ttph: " + task_time_per_heart);
 		if((task_time_per_heart < time_per_heart) && (!slaughter))
 		{
 			return calcTicksWasted(task_stats, length_modifier, drop_modifier, number_assigned, true);
@@ -105,7 +304,7 @@ public class MortimerCalculatorPlugin extends Plugin
 	}
 
 	@Provides
-    MortimerCalculatorConfig provideConfig(ConfigManager configManager)
+	MortimerCalculatorConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(MortimerCalculatorConfig.class);
 	}
