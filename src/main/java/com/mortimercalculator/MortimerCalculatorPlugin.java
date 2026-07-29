@@ -1,6 +1,8 @@
 package com.mortimercalculator;
 
 import com.google.inject.Provides;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
@@ -8,8 +10,12 @@ import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
+import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+import net.runelite.client.ui.ClientToolbar;
+import net.runelite.client.ui.NavigationButton;
+import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -27,7 +33,17 @@ public class MortimerCalculatorPlugin extends Plugin
 	@Inject
 	private MortimerCalculatorConfig config;
 
-	public class TaskStats{
+	@Getter(AccessLevel.PACKAGE)
+	private MortimerCalculatorPanel panel;
+
+	@Getter(AccessLevel.PACKAGE)
+	private NavigationButton navButton;
+
+	@Inject
+	private ClientToolbar clientToolbar;
+
+	public class TaskStats
+	{
 		int assign_min;
 		int assign_max;
 		int travel_time;
@@ -249,6 +265,10 @@ public class MortimerCalculatorPlugin extends Plugin
 	@Override
 	protected void startUp() throws Exception
 	{
+		panel = injector.getInstance(MortimerCalculatorPanel.class);
+		navButton = NavigationButton.builder().tooltip("Mortimer Calculator").icon(ImageUtil.loadImageResource(getClass(), "/mortpanel.png")).panel(panel).build();
+		clientToolbar.addNavigation(navButton);
+
 		List<Float> ticks_wasted = new ArrayList<Float>();
 		List<String> task_names = new ArrayList<String>();
 		task_names.add("Gargoyles");		//! get from master
@@ -301,6 +321,21 @@ public class MortimerCalculatorPlugin extends Plugin
 		float superiors_per_task = number_killed_with_bracelet/kills_per_superior;
 		float modified_superiors_per_heart = (float)((base_superiors_per_heart * 100.0) / (100.0 + drop_modifier));
 		return modified_superiors_per_heart/superiors_per_task;
+	}
+
+	@Subscribe
+	public void onConfigChanged(ConfigChanged configChanged)
+	{
+		if(configChanged.getKey().equals("showTimeWasted"))
+		{
+			panel.update();
+		}
+	}
+
+	@Override
+	protected void shutDown()
+	{
+		clientToolbar.removeNavigation(navButton);
 	}
 
 	@Provides

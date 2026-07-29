@@ -50,6 +50,18 @@ public interface MortimerCalculatorConfig extends Config
 		return 402161;
 	}
 
+	@ConfigItem(
+			position = 1,
+			section = advancedSettingsSection,
+			keyName = "showTimeWasted",
+			name = "Show time wasted per task",
+			description = "Show time wasted per task, the metric used for choosing which is the best (lower is better)"
+	)
+	default boolean showTimeWasted()
+	{
+		return false;
+	}
+
 	@ConfigSection(name = "Venators (Advanced)", description = "Change values used for Venators", position = 1, closedByDefault = true)
 	String venatorsSection = "Venators (Advanced)";
 
