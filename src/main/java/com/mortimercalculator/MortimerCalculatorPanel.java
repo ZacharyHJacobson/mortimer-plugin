@@ -279,7 +279,7 @@ public class MortimerCalculatorPanel extends PluginPanel
             monster_box.addActionListener(event -> {update();});
             task_box.add(monster_box);
 
-            String[] modifier_list = {"Points","Assigned","Clue Chance", "Superior Unique Chance", "Slayer XP"};
+            String[] modifier_list = {"Slayer points","Assigned","Clue chance", "Superior unique chance", "Slayer XP"};
             modifier_box = new JComboBox<>(modifier_list);
             modifier_box.setFont(FontManager.getRunescapeFont());
             modifier_box.setForeground(Color.yellow);
@@ -354,6 +354,25 @@ public class MortimerCalculatorPanel extends PluginPanel
             Number num = (Number) magnitude.getValue();
             return num.intValue();
         }
+
+        public void update_task(String name, String modifier, int new_magnitude)
+        {
+            String[] monsters_list = {"none", "Aberrant Spectres", "Abyssal Demons", "Aquanites", "Araxytes", "Banshees", "Basilisks", "Bloodveld", "Cave Crawlers", "Cave Horrors", "Cockatrice", "Crawling Hands", "Custodian Stalkers", "Dark Beasts", "Drakes", "Dust Devils", "Gargoyles", "Gryphons", "Hydras", "Infernal Mages", "Jellies", "Kurask", "Nechryael", "Pyrefiends", "Rockslugs", "Smoke Devils", "Turoth", "Venators", "Warped Creatures", "Wyrms"};
+            for(int name_index = 0; name_index < monsters_list.length; name_index++)
+            {
+                if(Objects.equals(monsters_list[name_index], name))
+                monster_box.setSelectedIndex(name_index);
+            }
+
+            String[] modifier_list = {"Slayer points","Assigned","Clue Chance", "Superior Unique Chance", "Slayer XP"};
+            for(int modifier_index = 0; modifier_index < modifier_list.length; modifier_index++)
+            {
+                if(Objects.equals(modifier_list[modifier_index], modifier))
+                    modifier_box.setSelectedIndex(modifier_index);
+            }
+
+            magnitude.setValue(new_magnitude);
+        }
     }
 
     @Inject
@@ -427,8 +446,8 @@ public class MortimerCalculatorPanel extends PluginPanel
 
     private int timePerTask(TaskStats task_stats, float number_killed_with_bracelet)
     {
-        int time = config.prepTime() + task_stats.travel_time;	//! let uses input eventually
-        time += (int)(number_killed_with_bracelet/task_stats.kills_per_hour * 6000);	//! let uses input eventually
+        int time = config.prepTime() + task_stats.travel_time;
+        time += (int)(number_killed_with_bracelet/task_stats.kills_per_hour * 6000);	//! let users input eventually
         return time;
     }
 
@@ -438,6 +457,11 @@ public class MortimerCalculatorPanel extends PluginPanel
         float superiors_per_task = number_killed_with_bracelet/kills_per_superior;
         float modified_superiors_per_heart = (float)((base_superiors_per_heart * 100.0) / (100.0 + drop_modifier));
         return modified_superiors_per_heart/superiors_per_task;
+    }
+
+    public void update_task(int id, String name, String modifier, int magnitude)
+    {
+        taskboxes[id].update_task(name, modifier, magnitude);
     }
 
     public void update()
