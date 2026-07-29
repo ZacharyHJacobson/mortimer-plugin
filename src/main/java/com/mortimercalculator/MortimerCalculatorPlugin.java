@@ -12,6 +12,8 @@ import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.api.events.GameTick;
+import net.runelite.api.events.WidgetClosed;
+import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
@@ -62,7 +64,7 @@ public class MortimerCalculatorPlugin extends Plugin
 
 	private boolean in_range = false;
 	public boolean mortimer_open = false;
-	public Rectangle[] rectangles = new Rectangle[3];
+	public Widget[] task_widgets = new Widget[3];
 
 	@Override
 	protected void startUp() throws Exception
@@ -83,28 +85,27 @@ public class MortimerCalculatorPlugin extends Plugin
 	}
 
 	@Subscribe
-	public void onGameTick(GameTick tick)
+	public void onWidgetLoaded(WidgetLoaded event)
+	{
+		update();
+	}
+
+	@Subscribe
+	public void onWidgetClosed(WidgetClosed event)
+	{
+		update();
+	}
+
+	public void update()
 	{
 		mortimer_open = false;
 		Player player = client.getLocalPlayer();
 		if(player != null)
 		{
-			boolean now_in_range = player.getWorldLocation().distanceTo(new WorldPoint(2590, 8613, 0)) < 5;
-			if(!in_range)
-			{
-				Widget chatWidget = client.getWidget(15138820);
-				if((chatWidget != null)&&(Objects.equals(chatWidget.getText(), "Mortimer"))) now_in_range = true;
-			}
-			if((!in_range) && (now_in_range))
-			{
-				SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
-			}
-			in_range = now_in_range;
-			//check if dialog open
 			final Widget task_widget = client.getWidget(15466499);
 			if(task_widget != null)
 			{
-				//Id	15138820
+				SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
 				mortimer_open = true;
 				Widget[] subwidgets = task_widget.getDynamicChildren();
 				int matches = 0;
@@ -116,7 +117,7 @@ public class MortimerCalculatorPlugin extends Plugin
 								subwidgets[x-1].getText().split(">")[1],
 								subwidgets[x+4].getText().substring(subwidgets[x+4].getText().indexOf(" ") + 1),
 								Integer.parseInt(subwidgets[x+4].getText().split(" ")[0].split("%")[0]));
-						rectangles[matches] = subwidgets[x-2].getBounds();
+						task_widgets[matches] = subwidgets[x-2];
 						matches += 1;
 					}
 				}

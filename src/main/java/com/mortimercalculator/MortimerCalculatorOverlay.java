@@ -28,9 +28,9 @@ public class MortimerCalculatorOverlay extends Overlay
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        if(plugin.mortimer_open && plugin.best_rating_index > -1)
+        if(plugin.mortimer_open && plugin.best_rating_index > -1 && plugin.task_widgets[plugin.best_rating_index] != null && !plugin.task_widgets[plugin.best_rating_index].isHidden())
         {
-            Rectangle bestTaskRect = plugin.rectangles[plugin.best_rating_index].getBounds();
+            Rectangle bestTaskRect = plugin.task_widgets[plugin.best_rating_index].getBounds();
             graphics.setColor(Color.GREEN);
             graphics.draw(bestTaskRect);
         }
