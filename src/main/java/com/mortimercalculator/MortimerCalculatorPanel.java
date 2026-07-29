@@ -505,6 +505,7 @@ public class MortimerCalculatorPanel extends PluginPanel
             final_output += best_rating < 0 ? "a <b>slaughter</b> bracelet.<br><br><B>USE</B> your slayer cape after the task." : "an <b>expeditious</b> bracelet.<br><br><B>DO NOT</B> use your slayer cape after the task.";
             final_output += "</html>";
             output_box.setText(final_output);
+            plugin.best_rating_index = best_rating_index;
         }
     }
 }
