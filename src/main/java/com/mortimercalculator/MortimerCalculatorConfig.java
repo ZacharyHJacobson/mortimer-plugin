@@ -62,12 +62,12 @@ public interface MortimerCalculatorConfig extends Config
 		return false;
 	}
 
-	@ConfigSection(name = "Venators (Advanced)", description = "Change values used for Venators", position = 1, closedByDefault = true)
+	/*@ConfigSection(name = "Venators (Advanced)", description = "Change values used for Venators", position = 1, closedByDefault = true)
 	String venatorsSection = "Venators (Advanced)";
 
 	@ConfigItem(
 			position = 0,
-			section = advancedSettingsSection,
+			section = venatorsSection,
 			keyName = "zeroTimeVenators",
 			name = "0-time Venators",
 			description =  "Enable if you would kill Venators without the Heart chance"
@@ -75,5 +75,5 @@ public interface MortimerCalculatorConfig extends Config
 	default boolean zeroTimeVenators()
 	{
 		return false;
-	}
+	}*/
 }

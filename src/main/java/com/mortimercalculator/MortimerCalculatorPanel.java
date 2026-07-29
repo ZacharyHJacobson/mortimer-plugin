@@ -29,6 +29,7 @@ public class MortimerCalculatorPanel extends PluginPanel
 
     private final Taskbox[] taskboxes = new Taskbox[3];
     private final JPanel suggestion_box;
+    private JLabel output_box = null;
 
     public class TaskStats
     {
@@ -392,11 +393,12 @@ public class MortimerCalculatorPanel extends PluginPanel
         output.setFont(FontManager.getRunescapeBoldFont());
         output.setForeground(Color.yellow);
         suggestion_box.add(output);
+        this.output_box = output;
 
         return suggestion_box;
     }
 
-    private String calcTicksWasted(TaskStats task_stats, int length_modifier, int drop_modifier, float number_assigned, boolean slaughter)
+    private int calcTicksWasted(TaskStats task_stats, int length_modifier, int drop_modifier, float number_assigned, boolean slaughter)
     {
         if(number_assigned == 0) number_assigned = killsPerTask(task_stats, length_modifier);
         float number_killed_with_bracelet = applyBracelet(number_assigned, slaughter);
@@ -408,7 +410,7 @@ public class MortimerCalculatorPanel extends PluginPanel
         {
             return calcTicksWasted(task_stats, length_modifier, drop_modifier, number_assigned, true);
         }
-        return "" + (task_completion_time * (1 - (time_per_heart/task_time_per_heart)));
+        return (int)(task_completion_time * (1 - (time_per_heart/task_time_per_heart)));
     }
 
     private float killsPerTask(TaskStats task_stats, int length_modifier)
@@ -440,21 +442,45 @@ public class MortimerCalculatorPanel extends PluginPanel
 
     public void update()
     {
-        for(Taskbox box : taskboxes)
+        int[] ticks_wasted = {99999999, 99999999, 99999999};
+        int numer_valid = 0;
+        for(int box = 0; box < 3; box++)
         {
-            if(box != null && box.getName() != null)
+            if(taskboxes[box] != null && taskboxes[box].getName() != null)
             {
-                if(Objects.equals(box.getName(), "none"))
+                if(Objects.equals(taskboxes[box].getName(), "none"))
                 {
-                    box.ticks_wasted.setText("");
+                    taskboxes[box].ticks_wasted.setText("");
                 }
                 else
                 {
-                    box.ticks_wasted.setVisible(config.showTimeWasted());
-                    TaskStats task_stats = new TaskStats(box.getName());
-                    box.ticks_wasted.setText(calcTicksWasted(task_stats, box.getLengthModifier(), box.getDropModifier(), 0, false));
+                    numer_valid += 1;
+                    taskboxes[box].ticks_wasted.setVisible(config.showTimeWasted());
+                    TaskStats task_stats = new TaskStats(taskboxes[box].getName());
+                    ticks_wasted[box] = calcTicksWasted(task_stats, taskboxes[box].getLengthModifier(), taskboxes[box].getDropModifier(), 0, false);
+                    taskboxes[box].ticks_wasted.setText(Integer.toString(ticks_wasted[box]));
                 }
             }
+        }
+        if(numer_valid > 1)
+        {
+            int best_rating = 99999999;
+            int best_rating_index = -1;
+            // choose the best option and generate output
+            for(int rating = 0; rating < 3; rating++)
+            {
+                if(ticks_wasted[rating] < best_rating)
+                {
+                    best_rating = ticks_wasted[rating];
+                    best_rating_index = rating;
+                }
+            }
+            String final_output = "<html>Choose ";
+            final_output += taskboxes[best_rating_index].getName();
+            final_output += ", and use ";
+            final_output += best_rating < 0 ? "a <b>slaughter</b> bracelet.<br><br><B>USE</B> your slayer cape after the task." : "an <b>expeditious</b> bracelet.<br><br><B>DO NOT</B> use your slayer cape after the task.";
+            final_output += "</html>";
+            output_box.setText(final_output);
         }
     }
 }

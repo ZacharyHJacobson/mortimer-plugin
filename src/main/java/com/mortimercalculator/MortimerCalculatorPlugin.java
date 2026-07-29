@@ -49,13 +49,8 @@ public class MortimerCalculatorPlugin extends Plugin
 		navButton = NavigationButton.builder().tooltip("Mortimer Calculator").icon(ImageUtil.loadImageResource(getClass(), "/mortpanel.png")).panel(panel).build();
 		clientToolbar.addNavigation(navButton);
 
-		List<String> ticks_wasted = new ArrayList<String>();
-		List<String> task_names = new ArrayList<String>();
-		task_names.add("Gargoyles");		//! get from master
-		int length_modifier = 0;			//! get from master
-		int drop_modifier = 0;				//!get from master
-		//! compare the three
-		//! modifiers
+		//! get names from master
+		//! get modifiers from master
 		//! display output highlighting one of three UI spots
 		//! give skip advice based on number assigned
 	}
