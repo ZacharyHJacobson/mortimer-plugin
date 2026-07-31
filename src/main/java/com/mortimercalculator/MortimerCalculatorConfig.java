@@ -47,7 +47,7 @@ public interface MortimerCalculatorConfig extends Config
 	)
 	default int timeToHeart()
 	{
-		return 402161;
+		return 393051;
 	}
 
 	@ConfigItem(

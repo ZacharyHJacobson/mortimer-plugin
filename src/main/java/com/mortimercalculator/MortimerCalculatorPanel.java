@@ -158,9 +158,9 @@ public class MortimerCalculatorPanel extends PluginPanel
                 case "Wyrms":
                     assign_min = 80;
                     assign_max = 120;
-                    travel_time = 45;
-                    kills_per_hour = 250;
-                    superiors_per_heart = 728;
+                    travel_time = 20;
+                    kills_per_hour = 920;
+                    superiors_per_heart = 0;
                     break;
                 case "Dust Devils":
                     assign_min = 120;
@@ -182,6 +182,7 @@ public class MortimerCalculatorPanel extends PluginPanel
                     travel_time = 60;
                     kills_per_hour = 107;
                     superiors_per_heart = 536;
+                    break;
                 case "Gargoyles":
                     assign_min = 120;
                     assign_max = 180;
@@ -218,8 +219,8 @@ public class MortimerCalculatorPanel extends PluginPanel
                     superiors_per_heart = 352;
                     break;
                 case "Dark Beasts":
-                    assign_min = 40;
-                    assign_max = 60;
+                    assign_min = 110;
+                    assign_max = 135;
                     travel_time = 17;
                     kills_per_hour = 205;
                     superiors_per_heart = 256;
@@ -350,7 +351,7 @@ public class MortimerCalculatorPanel extends PluginPanel
 
         public int getDropModifier()
         {
-            if(!Objects.equals(modifier_box.getSelectedItem().toString(), "Superior Unique Chance")) return 0;
+            if(!Objects.equals(modifier_box.getSelectedItem().toString(), "Superior unique chance")) return 0;
             Number num = (Number) magnitude.getValue();
             return num.intValue();
         }
@@ -364,7 +365,7 @@ public class MortimerCalculatorPanel extends PluginPanel
                 monster_box.setSelectedIndex(name_index);
             }
 
-            String[] modifier_list = {"Slayer points","Assigned","Clue Chance", "Superior Unique Chance", "Slayer XP"};
+            String[] modifier_list = {"Slayer points","Assigned","Clue Chance", "Superior unique chance", "Slayer XP"};
             for(int modifier_index = 0; modifier_index < modifier_list.length; modifier_index++)
             {
                 if(Objects.equals(modifier_list[modifier_index], modifier))
