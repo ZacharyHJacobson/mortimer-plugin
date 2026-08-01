@@ -15,6 +15,8 @@ import net.runelite.api.events.GameTick;
 import net.runelite.api.events.WidgetClosed;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InterfaceID;
+import net.runelite.api.gameval.VarPlayerID;
+import net.runelite.api.gameval.VarbitID;
 import net.runelite.api.widgets.ComponentID;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.config.ConfigManager;
@@ -62,7 +64,6 @@ public class MortimerCalculatorPlugin extends Plugin
 	@Inject
 	private ClientToolbar clientToolbar;
 
-	private boolean in_range = false;
 	public boolean mortimer_open = false;
 	public Widget[] task_widgets = new Widget[3];
 
@@ -72,24 +73,20 @@ public class MortimerCalculatorPlugin extends Plugin
 		overlayManager.add(mortimerCalculatorOverlay);
 		panel = injector.getInstance(MortimerCalculatorPanel.class);
 		navButton = NavigationButton.builder().tooltip("Mortimer Calculator").icon(ImageUtil.loadImageResource(getClass(), "/mortpanel.png")).panel(panel).build();
-		clientToolbar.addNavigation(navButton);
+		if(!config.hideWhenAway()) clientToolbar.addNavigation(navButton);
 		//! give skip advice based on number assigned
 	}
 
 	@Subscribe
 	public void onConfigChanged(ConfigChanged configChanged)
 	{
+		if(!mortimer_open && config.hideWhenAway()) clientToolbar.removeNavigation(navButton);
+		if(!config.hideWhenAway()) clientToolbar.addNavigation(navButton);
 		panel.update();
 	}
 
 	@Subscribe
 	public void onWidgetLoaded(WidgetLoaded event)
-	{
-		update();
-	}
-
-	@Subscribe
-	public void onWidgetClosed(WidgetClosed event)
 	{
 		update();
 	}
@@ -101,8 +98,13 @@ public class MortimerCalculatorPlugin extends Plugin
 		if(player != null)
 		{
 			final Widget task_widget = client.getWidget(15466499);
-			if(task_widget != null)
+			if(task_widget == null || task_widget.isHidden())
 			{
+				if(config.hideWhenAway()) removeNavPanel();
+			}
+			else
+			{
+				clientToolbar.addNavigation(navButton);
 				SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
 				mortimer_open = true;
 				Widget[] subwidgets = task_widget.getDynamicChildren();
@@ -126,6 +128,11 @@ public class MortimerCalculatorPlugin extends Plugin
 
 	@Override
 	protected void shutDown()
+	{
+		removeNavPanel();
+	}
+
+	public void removeNavPanel()
 	{
 		clientToolbar.removeNavigation(navButton);
 	}

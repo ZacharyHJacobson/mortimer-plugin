@@ -24,15 +24,27 @@ public interface MortimerCalculatorConfig extends Config
 	}
 
 	@ConfigItem(
-			position = 0,
+			position = 1,
 			section = settingsSection,
 			keyName = "prepTime",
-			name = "Ticks to prepare for new task",
+			name = "Ticks until geared",
 			description = "Total ticks between finishing the previous task and being geared for the new one, does NOT include travel time to task location"
 	)
 	default int prepTime()
 	{
 		return 30;
+	}
+
+	@ConfigItem(
+			position = 2,
+			section = settingsSection,
+			keyName = "hideWhenAway",
+			name = "Hide when away",
+			description = "Hide side panel when task window is closed"
+	)
+	default boolean hideWhenAway()
+	{
+		return true;
 	}
 
 	@ConfigSection(name = "Settings (Advanced)", description = "Change values used for calculations", position = -10, closedByDefault = true)
