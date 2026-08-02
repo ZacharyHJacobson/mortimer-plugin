@@ -1,6 +1,6 @@
 package com.mortimercalculator;
 
-import net.runelite.api.Client;
+import net.runelite.api.widgets.Widget;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -10,33 +10,35 @@ import java.awt.*;
 
 public class MortimerCalculatorOverlay extends Overlay
 {
-    private final Client client;
     private final MortimerCalculatorPlugin plugin;
-    private final MortimerCalculatorConfig config;
+    private Widget task_widget;
 
     @Inject
-    private MortimerCalculatorOverlay(Client client, MortimerCalculatorPlugin mortimerCalculatorPlugin, MortimerCalculatorConfig mortimerCalculatorConfig)
+    private MortimerCalculatorOverlay(MortimerCalculatorPlugin mortimerCalculatorPlugin)
     {
-        this.client = client;
         this.plugin = mortimerCalculatorPlugin;
-        this.config = mortimerCalculatorConfig;
 
         setPosition(OverlayPosition.DYNAMIC);
         setLayer(OverlayLayer.ABOVE_WIDGETS);
     }
 
+    public void updateTaskWidget(Widget new_task_widget)
+    {
+        task_widget = new_task_widget;
+    }
+
     @Override
     public Dimension render(Graphics2D graphics)
     {
-        if(plugin.mortimer_open && plugin.best_rating_index > -1 && plugin.task_widgets[plugin.best_rating_index] != null)
+        if(plugin.mortimer_open && task_widget != null)
         {
-            if(plugin.task_widgets[plugin.best_rating_index].isHidden())
+            if(task_widget.isHidden())
             {
-                if(config.hideWhenAway()) plugin.removeNavPanel();
+                plugin.mortimerClosed();
             }
             else
             {
-                Rectangle bestTaskRect = plugin.task_widgets[plugin.best_rating_index].getBounds();
+                Rectangle bestTaskRect = task_widget.getBounds();
                 graphics.setColor(Color.GREEN);
                 graphics.draw(bestTaskRect);
             }
