@@ -114,7 +114,7 @@ public class MortimerCalculatorPlugin extends Plugin
 
 	/**
 	 * update the overlay with the widget for the best available Mortimer task
-	 * @param task_widget Widget object corresponding to the best task
+	 * @param task_widget parent Widget for the components of Mortimer's UI
 	 */
 	private void updateOverlay(Widget task_widget)
 	{
