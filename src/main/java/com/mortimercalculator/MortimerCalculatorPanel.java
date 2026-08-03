@@ -86,6 +86,7 @@ public class MortimerCalculatorPanel extends PluginPanel
      */
     private int calcTicksWasted(TaskStats task_stats, int drop_modifier, float number_assigned, boolean slaughter)
     {
+        if(task_stats.zero_time != MortimerCalculatorConfig.PriorityComparedToHeart.NO_VALUE && !slaughter) return calcTicksWasted(task_stats, drop_modifier, number_assigned, true);
         float number_killed_with_bracelet = applyBracelet(number_assigned, slaughter);
         int task_completion_time = timePerTask(task_stats, number_killed_with_bracelet);
         if(task_stats.superiors_per_heart == 0) return task_completion_time;
@@ -96,6 +97,8 @@ public class MortimerCalculatorPanel extends PluginPanel
         {
             return calcTicksWasted(task_stats, drop_modifier, number_assigned, true);
         }
+        if(task_stats.zero_time == MortimerCalculatorConfig.PriorityComparedToHeart.EQUAL_VALUE) return (int)(task_completion_time * -(time_per_heart/task_time_per_heart));
+        if(task_stats.zero_time == MortimerCalculatorConfig.PriorityComparedToHeart.HIGHER_PRIORITY) return (int)(task_completion_time * -(time_per_heart/task_time_per_heart)) - 999999;
         return (int)(task_completion_time * (1 - (time_per_heart/task_time_per_heart)));
     }
 

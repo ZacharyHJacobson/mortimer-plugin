@@ -8,6 +8,12 @@ import net.runelite.client.config.ConfigSection;
 @ConfigGroup("MortimerCalculator")
 public interface MortimerCalculatorConfig extends Config
 {
+	enum PriorityComparedToHeart {
+		NO_VALUE,
+		EQUAL_VALUE,
+		HIGHER_PRIORITY
+	}
+
 	@ConfigSection(name = "Settings", description = "General use settings", position = -100)
 	String settingsSection = "Settings";
 	@ConfigItem(
@@ -72,6 +78,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Aberrant Spectres (Advanced)", description = "Change values used for Aberrant Spectres", position = 1, closedByDefault = true)
 	String aberrantSpectresSection = "Aberrant Spectres (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = aberrantSpectresSection,
+			keyName = "aberrantSpectresZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart aberrantSpectresZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = aberrantSpectresSection,
 			keyName = "aberrantSpectresTravelTime",
@@ -90,6 +104,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Abyssal Demons (Advanced)", description = "Change values used for Abyssal Demons", position = 1, closedByDefault = true)
 	String abyssalDemonsSection = "Abyssal Demons (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = abyssalDemonsSection,
+			keyName = "abyssalDemonsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart abyssalDemonsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = abyssalDemonsSection,
@@ -110,6 +132,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Aquanites (Advanced)", description = "Change values used for Aquanites", position = 1, closedByDefault = true)
 	String aquanitesSection = "Aquanites (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = aquanitesSection,
+			keyName = "aquanitesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart aquanitesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = aquanitesSection,
 			keyName = "aquanitesTravelTime",
@@ -128,6 +158,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Araxytes (Advanced)", description = "Change values used for Araxytes", position = 1, closedByDefault = true)
 	String araxytesSection = "Araxytes (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = araxytesSection,
+			keyName = "araxytesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart araxytesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = araxytesSection,
@@ -148,6 +186,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Banshees (Advanced)", description = "Change values used for Banshees", position = 1, closedByDefault = true)
 	String bansheesSection = "Banshees (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = bansheesSection,
+			keyName = "bansheesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart bansheesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = bansheesSection,
 			keyName = "bansheesTravelTime",
@@ -166,6 +212,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Basilisks (Advanced)", description = "Change values used for Basilisks", position = 1, closedByDefault = true)
 	String basilisksSection = "Basilisks (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = basilisksSection,
+			keyName = "basilisksZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart basilisksZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = basilisksSection,
@@ -186,6 +240,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Bloodveld (Advanced)", description = "Change values used for Bloodveld", position = 1, closedByDefault = true)
 	String bloodveldSection = "Bloodveld (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = bloodveldSection,
+			keyName = "bloodveldZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart bloodveldZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = bloodveldSection,
 			keyName = "bloodveldTravelTime",
@@ -204,6 +266,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Cave Crawlers (Advanced)", description = "Change values used for Cave Crawlers", position = 1, closedByDefault = true)
 	String caveCrawlersSection = "Cave Crawlers (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = caveCrawlersSection,
+			keyName = "caveCrawlersZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart caveCrawlersZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = caveCrawlersSection,
@@ -224,6 +294,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Cave Horrors (Advanced)", description = "Change values used for Cave Horrors", position = 1, closedByDefault = true)
 	String caveHorrorsSection = "Cave Horrors (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = caveHorrorsSection,
+			keyName = "caveHorrorsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart caveHorrorsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = caveHorrorsSection,
 			keyName = "caveHorrorsTravelTime",
@@ -242,6 +320,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Cockatrice (Advanced)", description = "Change values used for Cockatrice", position = 1, closedByDefault = true)
 	String cockatriceSection = "Cockatrice (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = cockatriceSection,
+			keyName = "cockatriceZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart cockatriceZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = cockatriceSection,
@@ -262,6 +348,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Crawling Hands (Advanced)", description = "Change values used for Crawling Hands", position = 1, closedByDefault = true)
 	String crawlingHandsSection = "Crawling Hands (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = crawlingHandsSection,
+			keyName = "crawlingHandsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart crawlingHandsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = crawlingHandsSection,
 			keyName = "crawlingHandsTravelTime",
@@ -280,6 +374,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Custodian Stalkers (Advanced)", description = "Change values used for Custodian Stalkers", position = 1, closedByDefault = true)
 	String custodianStalkersSection = "Custodian Stalkers (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = custodianStalkersSection,
+			keyName = "custodianStalkersZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart custodianStalkersZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = custodianStalkersSection,
@@ -300,6 +402,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Dark Beasts (Advanced)", description = "Change values used for Dark Beasts", position = 1, closedByDefault = true)
 	String darkBeastsSection = "Dark Beasts (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = darkBeastsSection,
+			keyName = "darkBeastsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart darkBeastsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = darkBeastsSection,
 			keyName = "darkBeastsTravelTime",
@@ -318,6 +428,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Drakes (Advanced)", description = "Change values used for Drakes", position = 1, closedByDefault = true)
 	String drakesSection = "Drakes (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = drakesSection,
+			keyName = "drakesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart drakesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = drakesSection,
@@ -338,6 +456,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Dust Devils (Advanced)", description = "Change values used for Dust Devils", position = 1, closedByDefault = true)
 	String dustDevilsSection = "Dust Devils (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = dustDevilsSection,
+			keyName = "dustDevilsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart dustDevilsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = dustDevilsSection,
 			keyName = "dustDevilsTravelTime",
@@ -356,6 +482,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Gargoyles (Advanced)", description = "Change values used for Gargoyles", position = 1, closedByDefault = true)
 	String gargoylesSection = "Gargoyles (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = gargoylesSection,
+			keyName = "gargoylesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart gargoylesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = gargoylesSection,
@@ -376,6 +510,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Gryphons (Advanced)", description = "Change values used for Gryphons", position = 1, closedByDefault = true)
 	String gryphonsSection = "Gryphons (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = gryphonsSection,
+			keyName = "gryphonsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart gryphonsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = gryphonsSection,
 			keyName = "gryphonsTravelTime",
@@ -394,6 +536,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Hydras (Advanced)", description = "Change values used for Hydras", position = 1, closedByDefault = true)
 	String hydrasSection = "Hydras (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = hydrasSection,
+			keyName = "hydrasZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart hydrasZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = hydrasSection,
@@ -414,6 +564,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Infernal Mages (Advanced)", description = "Change values used for Infernal Mages", position = 1, closedByDefault = true)
 	String infernalMagesSection = "Infernal Mages (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = infernalMagesSection,
+			keyName = "infernalMagesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart infernalMagesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = infernalMagesSection,
 			keyName = "infernalMagesTravelTime",
@@ -432,6 +590,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Jellies (Advanced)", description = "Change values used for Jellies", position = 1, closedByDefault = true)
 	String jelliesSection = "Jellies (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = jelliesSection,
+			keyName = "jelliesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart jelliesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = jelliesSection,
@@ -452,6 +618,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Kurask (Advanced)", description = "Change values used for Kurask", position = 1, closedByDefault = true)
 	String kuraskSection = "Kurask (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = kuraskSection,
+			keyName = "kuraskZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart kuraskZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = kuraskSection,
 			keyName = "kuraskTravelTime",
@@ -470,6 +644,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Nechryael (Advanced)", description = "Change values used for Nechryael", position = 1, closedByDefault = true)
 	String nechryaelSection = "Nechryael (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = nechryaelSection,
+			keyName = "nechryaelZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart nechryaelZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = nechryaelSection,
@@ -490,6 +672,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Pyrefiends (Advanced)", description = "Change values used for Pyrefiends", position = 1, closedByDefault = true)
 	String pyrefiendsSection = "Pyrefiends (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = pyrefiendsSection,
+			keyName = "pyrefiendsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart pyrefiendsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = pyrefiendsSection,
 			keyName = "pyrefiendsTravelTime",
@@ -508,6 +698,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Rockslugs (Advanced)", description = "Change values used for Rockslugs", position = 1, closedByDefault = true)
 	String rockslugsSection = "Rockslugs (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = rockslugsSection,
+			keyName = "rockslugsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart rockslugsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = rockslugsSection,
@@ -528,6 +726,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Smoke Devils (Advanced)", description = "Change values used for Smoke Devils", position = 1, closedByDefault = true)
 	String smokeDevilsSection = "Smoke Devils (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = smokeDevilsSection,
+			keyName = "smokeDevilsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart smokeDevilsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = smokeDevilsSection,
 			keyName = "smokeDevilsTravelTime",
@@ -547,6 +753,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Turoth (Advanced)", description = "Change values used for Turoth", position = 1, closedByDefault = true)
 	String turothSection = "Turoth (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = turothSection,
+			keyName = "turothZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart turothZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = turothSection,
 			keyName = "turothTravelTime",
@@ -565,17 +779,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Venators (Advanced)", description = "Change values used for Venators", position = 2, closedByDefault = true)
 	String venatorsSection = "Venators (Advanced)";
-	/*@ConfigItem(
+	@ConfigItem(
 			position = 0,
 			section = venatorsSection,
 			keyName = "venatorsZeroTime",
-			name = "0-time Venators",
-			description =  "Enable if you would kill Venators even if you already owned a heart"
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
 	)
-	default boolean venatorsZeroTime()
-	{
-		return false;
-	}*/
+	default PriorityComparedToHeart venatorsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = venatorsSection,
@@ -596,6 +807,14 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigSection(name = "Warped Creatures (Advanced)", description = "Change values used for Warped Creatures", position = 1, closedByDefault = true)
 	String warpedCreaturesSection = "Warped Creatures (Advanced)";
 	@ConfigItem(
+			position = 0,
+			section = warpedCreaturesSection,
+			keyName = "warpedCreaturesZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart warpedCreaturesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
+	@ConfigItem(
 			position = 1,
 			section = warpedCreaturesSection,
 			keyName = "warpedCreaturesTravelTime",
@@ -614,6 +833,14 @@ public interface MortimerCalculatorConfig extends Config
 
 	@ConfigSection(name = "Wyrmlings (Advanced)", description = "Change values used for Wyrm tasks (done at Wyrmlings)", position = 1, closedByDefault = true)
 	String wyrmsSection = "Wyrmlings (Advanced)";
+	@ConfigItem(
+			position = 0,
+			section = wyrmsSection,
+			keyName = "wyrmsZeroTime",
+			name = "Priority Compared to Heart",
+			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+	)
+	default PriorityComparedToHeart wyrmsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = wyrmsSection,
