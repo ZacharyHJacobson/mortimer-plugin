@@ -128,6 +128,8 @@ public class MortimerCalculatorPlugin extends Plugin
 			{
 				panel.update_task(matches,
 						subwidgets[x-1].getText().split(">")[1],
+						Integer.parseInt(subwidgets[x].getText().split("Amount: ")[1].split(" to ")[0]),
+						Integer.parseInt(subwidgets[x].getText().split(" to ")[1]),
 						subwidgets[x+4].getText().substring(subwidgets[x+4].getText().indexOf(" ") + 1),
 						Integer.parseInt(subwidgets[x+4].getText().split(" ")[0].split("%")[0]));
 				task_widgets[matches] = subwidgets[x-2];

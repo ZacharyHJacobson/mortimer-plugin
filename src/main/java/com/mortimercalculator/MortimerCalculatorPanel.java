@@ -79,15 +79,13 @@ public class MortimerCalculatorPanel extends PluginPanel
      * This is calculated by comparing the time to obtain the heart if the task was repeated forever,
      * comparing it to the average heart length, and scaling to the task duration.
      * @param task_stats data for the task's monster
-     * @param length_modifier negative if length is reduced, positive if increased, 0 if other modifier is present instead
      * @param drop_modifier the percentage increase, ie +300% would be 300, not 3
-     * @param number_assigned number assigned; 0 if unknown, average length will be calculated using TaskStats
+     * @param number_assigned number assigned including length modifier but not bracelet
      * @param slaughter slaughter bracelet if true, expeditious if false; if false and ticks wasted is negative, recalculates with slaughter
      * @return the expected ticks wasted by picking the task, negative if spamming the task would be faster than Mortimer
      */
-    private int calcTicksWasted(TaskStats task_stats, int length_modifier, int drop_modifier, float number_assigned, boolean slaughter)
+    private int calcTicksWasted(TaskStats task_stats, int drop_modifier, float number_assigned, boolean slaughter)
     {
-        if(number_assigned == 0) number_assigned = killsPerTask(task_stats, length_modifier);
         float number_killed_with_bracelet = applyBracelet(number_assigned, slaughter);
         int task_completion_time = timePerTask(task_stats, number_killed_with_bracelet);
         if(task_stats.superiors_per_heart == 0) return task_completion_time;
@@ -96,20 +94,21 @@ public class MortimerCalculatorPanel extends PluginPanel
         float task_time_per_heart = task_completion_time * tasks_per_heart;
         if((task_time_per_heart < time_per_heart) && (!slaughter))
         {
-            return calcTicksWasted(task_stats, length_modifier, drop_modifier, number_assigned, true);
+            return calcTicksWasted(task_stats, drop_modifier, number_assigned, true);
         }
         return (int)(task_completion_time * (1 - (time_per_heart/task_time_per_heart)));
     }
 
     /**
      * average kills per task given the minimum and maximum within a TaskStats object and length modifier if present
-     * @param task_stats data for the task's monster
+     * @param assign_min minimum possible assigned
+     * @param assign_max maximum possible assigned
      * @param length_modifier negative if length is reduced, positive if increased, 0 if other modifier is present instead
      * @return average kills per task
      */
-    private float killsPerTask(TaskStats task_stats, int length_modifier)
+    private float killsPerTask(int assign_min, int assign_max, int length_modifier)
     {
-        float task_length = (float)(task_stats.assign_min + task_stats.assign_max)/2;
+        float task_length = (float)(assign_min + assign_max)/2;
         task_length += length_modifier;
         return task_length;
     }
@@ -161,9 +160,9 @@ public class MortimerCalculatorPanel extends PluginPanel
      * @param modifier modifier name
      * @param magnitude positive or negative variant of the modifier
      */
-    public void update_task(int id, String name, String modifier, int magnitude)
+    public void update_task(int id, String name, int task_min, int task_max, String modifier, int magnitude)
     {
-        taskboxes[id].update_task(name, modifier, magnitude);
+        taskboxes[id].update_task(name, task_min, task_max, modifier, magnitude);
     }
 
     /**
@@ -187,7 +186,8 @@ public class MortimerCalculatorPanel extends PluginPanel
                     valid_tasks += 1;
                     taskboxes[box].ticks_wasted.setVisible(config.showTimeWasted());
                     TaskStats task_stats = new TaskStats(taskboxes[box].getName());
-                    ticks_wasted[box] = calcTicksWasted(task_stats, taskboxes[box].getLengthModifier(), taskboxes[box].getDropModifier(), 0, false);
+                    float number_assigned = killsPerTask(taskboxes[box].getAssignMin(), taskboxes[box].getAssignMax(), taskboxes[box].getLengthModifier());
+                    ticks_wasted[box] = calcTicksWasted(task_stats, taskboxes[box].getDropModifier(), number_assigned, false);
                     taskboxes[box].ticks_wasted.setText(Integer.toString(ticks_wasted[box]));
                 }
             }
@@ -224,6 +224,8 @@ public class MortimerCalculatorPanel extends PluginPanel
         public JPanel task_box;
         public JLabel ticks_wasted;
         private final JComboBox<String> monster_box;
+        private final JFormattedTextField assign_min;
+        private final JFormattedTextField assign_max;
         private final JComboBox<String> modifier_box;
         private final JFormattedTextField magnitude;
 
@@ -248,18 +250,46 @@ public class MortimerCalculatorPanel extends PluginPanel
             monster_box.addActionListener(event -> update());
             task_box.add(monster_box);
 
+            JPanel assign_row = new JPanel();
+            assign_row.setLayout(new BoxLayout(assign_row, BoxLayout.X_AXIS));
+            assign_row.add(createRSLabel("Amount: "));
+            assign_min = createIntInputBox();
+            assign_row.add(assign_min);
+            assign_row.add(createRSLabel(" to "));
+            assign_max = createIntInputBox();
+            assign_row.add(assign_max);
+            task_box.add(assign_row);
+
             modifier_box = new JComboBox<>(MortimerConstants.MODIFIERS);
             modifier_box.setFont(FontManager.getRunescapeFont());
             modifier_box.setForeground(Color.yellow);
             modifier_box.addActionListener(event -> update());
             task_box.add(modifier_box);
 
-            magnitude = new JFormattedTextField(NumberFormat.getIntegerInstance());
-            magnitude.setFont(FontManager.getRunescapeFont());
-            magnitude.setForeground(Color.yellow);
-            magnitude.setValue(0);
-            magnitude.setHorizontalAlignment(SwingConstants.LEFT);
-            magnitude.getDocument().addDocumentListener(new DocumentListener() {
+            magnitude = createIntInputBox();
+            task_box.add(magnitude);
+
+            ticks_wasted = createRSLabel("");
+            ticks_wasted.setVisible(config.showTimeWasted());
+            task_box.add(ticks_wasted);
+        }
+
+        private JLabel createRSLabel(String text)
+        {
+            JLabel new_label = new JLabel(text);
+            new_label.setFont(FontManager.getRunescapeSmallFont());
+            new_label.setForeground(Color.yellow);
+            return new_label;
+        }
+
+        private JFormattedTextField createIntInputBox()
+        {
+            JFormattedTextField text_box = new JFormattedTextField(NumberFormat.getIntegerInstance());
+            text_box.setFont(FontManager.getRunescapeFont());
+            text_box.setForeground(Color.yellow);
+            text_box.setValue(0);
+            text_box.setHorizontalAlignment(SwingConstants.LEFT);
+            text_box.getDocument().addDocumentListener(new DocumentListener() {
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     update_immediately();
@@ -279,34 +309,40 @@ public class MortimerCalculatorPanel extends PluginPanel
                 {
                     SwingUtilities.invokeLater(() -> {
                         try{
-                            magnitude.commitEdit();
+                            text_box.commitEdit();
                             update();
                         } catch (Exception ignored) {}
                     });
                 }
             });
-            magnitude.addFocusListener(new FocusAdapter()
+            text_box.addFocusListener(new FocusAdapter()
             {
                 public void focusLost(FocusEvent e) {
                     SwingUtilities.invokeLater(() -> {
-                        magnitude.validate();
+                        text_box.validate();
                         update();
                     });
                 }
             });
-            magnitude.addActionListener(event -> update());
-            task_box.add(magnitude);
-
-            ticks_wasted = new JLabel("");
-            ticks_wasted.setVisible(config.showTimeWasted());
-            ticks_wasted.setFont(FontManager.getRunescapeSmallFont());
-            ticks_wasted.setForeground(Color.yellow);
-            task_box.add(ticks_wasted);
+            text_box.addActionListener(event -> update());
+            return text_box;
         }
 
         public String getName()
         {
             return(monster_box.getSelectedItem().toString());
+        }
+
+        public int getAssignMin()
+        {
+            Number num = (Number) assign_min.getValue();
+            return num.intValue();
+        }
+
+        public int getAssignMax()
+        {
+            Number num = (Number) assign_max.getValue();
+            return num.intValue();
         }
 
         public int getLengthModifier()
@@ -323,20 +359,20 @@ public class MortimerCalculatorPanel extends PluginPanel
             return num.intValue();
         }
 
-        public void update_task(String name, String modifier, int new_magnitude)
+        public void update_task(String name, int task_min, int task_max, String modifier, int new_magnitude)
         {
             for(int name_index = 0; name_index < MortimerConstants.MONSTERS.length; name_index++)
             {
                 if(Objects.equals(MortimerConstants.MONSTERS[name_index], name))
                     monster_box.setSelectedIndex(name_index);
             }
-
+            assign_min.setValue(task_min);
+            assign_max.setValue(task_max);
             for(int modifier_index = 0; modifier_index < MortimerConstants.MODIFIERS.length; modifier_index++)
             {
-                if(Objects.equals(MortimerConstants.MODIFIERS[modifier_index], modifier))
+                if(modifier.contains(MortimerConstants.MODIFIERS[modifier_index]))
                     modifier_box.setSelectedIndex(modifier_index);
             }
-
             magnitude.setValue(new_magnitude);
         }
     }
