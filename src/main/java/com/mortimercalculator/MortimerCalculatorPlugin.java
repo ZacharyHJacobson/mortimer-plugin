@@ -58,6 +58,7 @@ public class MortimerCalculatorPlugin extends Plugin
 		panel = injector.getInstance(MortimerCalculatorPanel.class);
 		navButton = NavigationButton.builder().tooltip("Mortimer Calculator").icon(ImageUtil.loadImageResource(getClass(), "/mortpanel.png")).panel(panel).build();
 		updateNavButton();
+		TaskStats.config = config;
 		//! give skip advice based on number assigned
 	}
 
