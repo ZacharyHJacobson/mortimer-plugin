@@ -11,9 +11,11 @@ public class TaskStats
     int travel_time;
     int kills_per_hour;
     int superiors_per_heart;
+    int kills_per_superior;
 
     public TaskStats(String task_name)
     {
+        kills_per_superior = (config.eliteCas()) ? 150 : 200;
         switch(task_name)
         {
             case "Crawling Hands":
@@ -75,6 +77,7 @@ public class TaskStats
                 travel_time = config.jelliesTravelTime();
                 kills_per_hour = config.jelliesKPH();
                 superiors_per_heart = 872;
+                if(config.jelliesWilderness()) kills_per_superior = (config.eliteCas()) ? 135 : 180;
                 break;
             case "Custodian Stalkers":
                 zero_time = config.custodianStalkersZeroTime();
@@ -123,6 +126,7 @@ public class TaskStats
                 travel_time = config.dustDevilsTravelTime();
                 kills_per_hour = config.dustDevilsKPH();
                 superiors_per_heart = 680;
+                if(config.dustDevilsWilderness()) kills_per_superior = (config.eliteCas()) ? 135 : 180;
                 break;
             case "Kurask":
                 zero_time = config.kuraskZeroTime();
@@ -153,6 +157,7 @@ public class TaskStats
                 travel_time = config.nechryaelTravelTime();
                 kills_per_hour = config.nechryaelKPH();
                 superiors_per_heart = 440;
+                if(config.nechryaelWilderness()) kills_per_superior = (config.eliteCas()) ? 135 : 180;
                 break;
             case "Drakes":
                 zero_time = config.drakesZeroTime();
@@ -165,6 +170,7 @@ public class TaskStats
                 travel_time = config.abyssalDemonsTravelTime();
                 kills_per_hour = config.abyssalDemonsKPH();
                 superiors_per_heart = 352;
+                if(config.abyssalDemonsWilderness()) kills_per_superior = (config.eliteCas()) ? 135 : 180;
                 break;
             case "Dark Beasts":
                 zero_time = config.darkBeastsZeroTime();

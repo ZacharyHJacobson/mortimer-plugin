@@ -90,7 +90,7 @@ public class MortimerCalculatorPanel extends PluginPanel
         float number_killed_with_bracelet = applyBracelet(number_assigned, slaughter);
         int task_completion_time = timePerTask(task_stats, number_killed_with_bracelet);
         if(task_stats.superiors_per_heart == 0) return task_completion_time;
-        float tasks_per_heart = tasksPerHeart(task_stats.superiors_per_heart, number_killed_with_bracelet, drop_modifier);
+        float tasks_per_heart = tasksPerHeart(task_stats.superiors_per_heart, number_killed_with_bracelet, drop_modifier, task_stats.kills_per_superior);
         int time_per_heart = config.timeToHeart();
         float task_time_per_heart = task_completion_time * tasks_per_heart;
         if((task_time_per_heart < time_per_heart) && (!slaughter))
@@ -148,9 +148,8 @@ public class MortimerCalculatorPanel extends PluginPanel
      * @param drop_modifier the percentage increase, ie +300% would be 300, not 3
      * @return expected tasks per heart
      */
-    private float tasksPerHeart(int base_superiors_per_heart, float number_killed_with_bracelet, int drop_modifier)
+    private float tasksPerHeart(int base_superiors_per_heart, float number_killed_with_bracelet, int drop_modifier, int kills_per_superior)
     {
-        int kills_per_superior = (config.eliteCas()) ? 150 : 200;
         float superiors_per_task = number_killed_with_bracelet/kills_per_superior;
         float modified_superiors_per_heart = (float)((base_superiors_per_heart * 100.0) / (100.0 + drop_modifier));
         return modified_superiors_per_heart/superiors_per_task;

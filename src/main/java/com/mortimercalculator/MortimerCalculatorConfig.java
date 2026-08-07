@@ -30,17 +30,6 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigItem(
 			position = 1,
 			section = settingsSection,
-			keyName = "prepTime",
-			name = "Ticks until geared",
-			description = "Total ticks between finishing the previous task and being geared for the new one, does NOT include travel time to task location"
-	)
-	default int prepTime()
-	{
-		return 30;
-	}
-	@ConfigItem(
-			position = 2,
-			section = settingsSection,
 			keyName = "hideWhenAway",
 			name = "Hide when away",
 			description = "Hide side panel when task window is closed"
@@ -55,6 +44,17 @@ public interface MortimerCalculatorConfig extends Config
 	@ConfigItem(
 			position = 0,
 			section = advancedSettingsSection,
+			keyName = "prepTime",
+			name = "Ticks until geared",
+			description = "Total ticks between finishing the previous task and being geared for the new one, does NOT include travel time to task location"
+	)
+	default int prepTime()
+	{
+		return 30;
+	}
+	@ConfigItem(
+			position = 1,
+			section = advancedSettingsSection,
 			keyName = "timeToHeart",
 			name = "Time to heart",
 			description = "Estimated ticks to obtain an Imbued Heart"
@@ -64,7 +64,7 @@ public interface MortimerCalculatorConfig extends Config
 		return 393051;
 	}
 	@ConfigItem(
-			position = 1,
+			position = 2,
 			section = advancedSettingsSection,
 			keyName = "showTimeWasted",
 			name = "Show time wasted per task",
@@ -128,6 +128,14 @@ public interface MortimerCalculatorConfig extends Config
 			description = "Average kills per hour not including banking and travel time"
 	)
 	default int abyssalDemonsKPH() {return 650;}
+	@ConfigItem(
+			position = 3,
+			section = abyssalDemonsSection,
+			keyName = "abyssalDemonsWilderness",
+			name = "Wilderness",
+			description = "Whether or not the task is completed in the Wilderness"
+	)
+	default boolean abyssalDemonsWilderness() {return false;}
 
 	@ConfigSection(name = "Aquanites (Advanced)", description = "Change values used for Aquanites", position = 1, closedByDefault = true)
 	String aquanitesSection = "Aquanites (Advanced)";
@@ -479,6 +487,14 @@ public interface MortimerCalculatorConfig extends Config
 			description = "Average kills per hour not including banking and travel time"
 	)
 	default int dustDevilsKPH() {return 780;}
+	@ConfigItem(
+			position = 3,
+			section = dustDevilsSection,
+			keyName = "dustDevilsWilderness",
+			name = "Wilderness",
+			description = "Whether or not the task is completed in the Wilderness"
+	)
+	default boolean dustDevilsWilderness() {return false;}
 
 	@ConfigSection(name = "Gargoyles (Advanced)", description = "Change values used for Gargoyles", position = 1, closedByDefault = true)
 	String gargoylesSection = "Gargoyles (Advanced)";
@@ -614,6 +630,14 @@ public interface MortimerCalculatorConfig extends Config
 			description = "Average kills per hour not including banking and travel time"
 	)
 	default int jelliesKPH() {return 840;}
+	@ConfigItem(
+			position = 3,
+			section = jelliesSection,
+			keyName = "jelliesWilderness",
+			name = "Wilderness",
+			description = "Whether or not the task is completed in the Wilderness"
+	)
+	default boolean jelliesWilderness() {return false;}
 
 	@ConfigSection(name = "Kurask (Advanced)", description = "Change values used for Kurask", position = 1, closedByDefault = true)
 	String kuraskSection = "Kurask (Advanced)";
@@ -668,6 +692,14 @@ public interface MortimerCalculatorConfig extends Config
 			description = "Average kills per hour not including banking and travel time"
 	)
 	default int nechryaelKPH() {return 520;}
+	@ConfigItem(
+			position = 3,
+			section = nechryaelSection,
+			keyName = "nechryaelWilderness",
+			name = "Wilderness",
+			description = "Whether or not the task is completed in the Wilderness"
+	)
+	default boolean nechryaelWilderness() {return false;}
 
 	@ConfigSection(name = "Pyrefiends (Advanced)", description = "Change values used for Pyrefiends", position = 1, closedByDefault = true)
 	String pyrefiendsSection = "Pyrefiends (Advanced)";
