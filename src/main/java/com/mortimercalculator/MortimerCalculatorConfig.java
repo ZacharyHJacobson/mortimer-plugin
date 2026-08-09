@@ -38,6 +38,19 @@ public interface MortimerCalculatorConfig extends Config
 	{
 		return true;
 	}
+	@ConfigItem(
+			position = 2,
+			section = settingsSection,
+			keyName = "wildernessPresets",
+			name = "Wilderness presets",
+			description = "Enable if doing tasks in the Wilderness when possible for the boosted superior rate and cannon compatibility.<br>" +
+					"Overrides KPH, travel time, and wilderness advanced settings for Jellies, Nechryael, Abyssal Demons, and Dust Devils, as well as the \"Time to heart\" setting.<br>" +
+					"To use custom values for these, leave this  setting disabled and tweak the affected settings as desired."
+	)
+	default boolean wildernessPresets()
+	{
+		return false;
+	}
 
 	@ConfigSection(name = "Settings (Advanced)", description = "Change values used for calculations", position = -10, closedByDefault = true)
 	String advancedSettingsSection = "Settings (Advanced)";

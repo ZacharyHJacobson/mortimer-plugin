@@ -94,10 +94,18 @@ public class TaskStats
                 break;
             case "Jellies":
                 zero_time = config.jelliesZeroTime();
-                travel_time = config.jelliesTravelTime();
-                kills_per_hour = config.jelliesKPH();
+                if(config.wildernessPresets())
+                {
+                    travel_time = MortimerConstants.JELLIES_WILDERNESS_TRAVEL;
+                    kills_per_hour = MortimerConstants.JELLIES_WILDERNESS_KPH;
+                }
+                else
+                {
+                    travel_time = config.jelliesTravelTime();
+                    kills_per_hour = config.jelliesKPH();
+                }
                 superiors_per_heart = 872;
-                if(config.jelliesWilderness())
+                if(config.jelliesWilderness() || config.wildernessPresets())
                 {
                     kills_per_superior = (config.eliteCas()) ? 135 : 180;
                     location = "Wilderness";
@@ -167,10 +175,18 @@ public class TaskStats
                 break;
             case "Dust Devils":
                 zero_time = config.dustDevilsZeroTime();
-                travel_time = config.dustDevilsTravelTime();
-                kills_per_hour = config.dustDevilsKPH();
+                if(config.wildernessPresets())
+                {
+                    travel_time = MortimerConstants.DUST_DEVILS_WILDERNESS_TRAVEL;
+                    kills_per_hour = MortimerConstants.DUST_DEVILS_WILDERNESS_KPH;
+                }
+                else
+                {
+                    travel_time = config.dustDevilsTravelTime();
+                    kills_per_hour = config.dustDevilsKPH();
+                }
                 superiors_per_heart = 680;
-                if(config.dustDevilsWilderness())
+                if(config.dustDevilsWilderness() || config.wildernessPresets())
                 {
                     kills_per_superior = (config.eliteCas()) ? 135 : 180;
                     location = "Wilderness";
@@ -216,10 +232,18 @@ public class TaskStats
                 break;
             case "Nechryael":
                 zero_time = config.nechryaelZeroTime();
-                travel_time = config.nechryaelTravelTime();
-                kills_per_hour = config.nechryaelKPH();
+                if(config.wildernessPresets())
+                {
+                    travel_time = MortimerConstants.NECHRYAEL_WILDERNESS_TRAVEL;
+                    kills_per_hour = MortimerConstants.NECHRYAEL_WILDERNESS_KPH;
+                }
+                else
+                {
+                    travel_time = config.nechryaelTravelTime();
+                    kills_per_hour = config.nechryaelKPH();
+                }
                 superiors_per_heart = 440;
-                if(config.nechryaelWilderness())
+                if(config.nechryaelWilderness() || config.wildernessPresets())
                 {
                     kills_per_superior = (config.eliteCas()) ? 135 : 180;
                     location = "Wilderness";
@@ -241,10 +265,18 @@ public class TaskStats
                 break;
             case "Abyssal Demons":
                 zero_time = config.abyssalDemonsZeroTime();
-                travel_time = config.abyssalDemonsTravelTime();
-                kills_per_hour = config.abyssalDemonsKPH();
+                if(config.wildernessPresets())
+                {
+                    travel_time = MortimerConstants.ABYSSAL_DEMONS_WILDERNESS_TRAVEL;
+                    kills_per_hour = MortimerConstants.ABYSSAL_DEMONS_WILDERNESS_KPH;
+                }
+                else
+                {
+                    travel_time = config.abyssalDemonsTravelTime();
+                    kills_per_hour = config.abyssalDemonsKPH();
+                }
                 superiors_per_heart = 352;
-                if(config.abyssalDemonsWilderness())
+                if(config.abyssalDemonsWilderness() || config.wildernessPresets())
                 {
                     kills_per_superior = (config.eliteCas()) ? 135 : 180;
                     location = "Wilderness";

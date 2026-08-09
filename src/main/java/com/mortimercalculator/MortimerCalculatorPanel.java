@@ -91,7 +91,15 @@ public class MortimerCalculatorPanel extends PluginPanel
         int task_completion_time = timePerTask(task_stats, number_killed_with_bracelet);
         if(task_stats.superiors_per_heart == 0) return task_completion_time;
         float tasks_per_heart = tasksPerHeart(task_stats.superiors_per_heart, number_killed_with_bracelet, drop_modifier, task_stats.kills_per_superior);
-        int time_per_heart = config.timeToHeart();
+        int time_per_heart;
+        if(config.wildernessPresets())
+        {
+            time_per_heart = MortimerConstants.TIME_TO_HEART_WILDERNESS;
+        }
+        else
+        {
+            time_per_heart = config.timeToHeart();
+        }
         float task_time_per_heart = task_completion_time * tasks_per_heart;
         if((task_time_per_heart < time_per_heart) && (!slaughter))
         {
