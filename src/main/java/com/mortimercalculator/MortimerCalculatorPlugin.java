@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.api.Player;
 import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.widgets.Widget;
 import net.runelite.client.config.ConfigManager;
@@ -99,17 +98,13 @@ public class MortimerCalculatorPlugin extends Plugin
 	public void update()
 	{
 		mortimer_open = false;
-		Player player = client.getLocalPlayer();
-		if(player != null)
-		{
-			final Widget task_widget = client.getWidget(MortimerConstants.TASK_WIDGET_ID);
-            if (task_widget != null && !task_widget.isHidden()) {
-                clientToolbar.addNavigation(navButton);
-                SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
-                mortimer_open = true;
-                updateOverlay(task_widget);
-            }
-        }
+		final Widget task_widget = client.getWidget(MortimerConstants.TASK_WIDGET_ID);
+		if (task_widget != null && !task_widget.isHidden()) {
+			clientToolbar.addNavigation(navButton);
+			SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
+			mortimer_open = true;
+			updateOverlay(task_widget);
+		}
 		updateNavButton();
 	}
 

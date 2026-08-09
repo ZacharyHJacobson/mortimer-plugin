@@ -199,6 +199,7 @@ public class MortimerCalculatorPanel extends PluginPanel
                     float number_assigned = killsPerTask(taskboxes[box].getAssignMin(), taskboxes[box].getAssignMax(), taskboxes[box].getLengthModifier());
                     ticks_wasted[box] = calcTicksWasted(task_stats, taskboxes[box].getDropModifier(), number_assigned, false);
                     taskboxes[box].ticks_wasted.setText(Integer.toString(ticks_wasted[box]));
+                    taskboxes[box].setSuggestion(task_stats.complete_using, task_stats.location);
                 }
             }
         }
@@ -219,6 +220,7 @@ public class MortimerCalculatorPanel extends PluginPanel
             final_output += taskboxes[best_rating_index].getName();
             final_output += ", and use ";
             final_output += best_rating < 0 ? "a <b>slaughter</b> bracelet.<br><br><B>USE</B> your slayer cape after the task." : "an <b>expeditious</b> bracelet.<br><br><B>DO NOT</B> use your slayer cape after the task.";
+            final_output += "<br><br>" + taskboxes[best_rating_index].getSuggestion();
             final_output += "</html>";
             output_box.setText(final_output);
             return(best_rating_index);
@@ -238,6 +240,8 @@ public class MortimerCalculatorPanel extends PluginPanel
         private final JFormattedTextField assign_max;
         private final JComboBox<String> modifier_box;
         private final JFormattedTextField magnitude;
+        @Getter
+        private String suggestion;
 
         public Taskbox()
         {
@@ -336,6 +340,11 @@ public class MortimerCalculatorPanel extends PluginPanel
             });
             text_box.addActionListener(event -> update());
             return text_box;
+        }
+
+        public void setSuggestion(String complete_using, String location)
+        {
+            suggestion = "Use " + complete_using + " " + location + ".";
         }
 
         public String getName()
