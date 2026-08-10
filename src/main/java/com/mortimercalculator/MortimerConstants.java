@@ -2,7 +2,7 @@ package com.mortimercalculator;
 
 public class MortimerConstants {
     public static final String[] MONSTERS = {"none", "Aberrant Spectres", "Abyssal Demons", "Aquanites", "Araxytes", "Banshees", "Basilisks", "Bloodveld", "Cave Crawlers", "Cave Horrors", "Cockatrice", "Crawling Hands", "Custodian Stalkers", "Dark Beasts", "Drakes", "Dust Devils", "Gargoyles", "Gryphons", "Hydras", "Infernal Mages", "Jellies", "Kurask", "Nechryael", "Pyrefiends", "Rockslugs", "Smoke Devils", "Turoth", "Venators", "Warped Creatures", "Wyrms"};
-    public static final String[] MODIFIERS = {"Slayer points","Assigned","Clue chance", "Superior unique chance", "Slayer XP"};
+    public static final String[] MODIFIERS = {"Slayer points", "Assigned", "Clue chance", "Superior unique chance", "Slayer XP"};
     public static final int TASK_WIDGET_ID = 15466499;
 
     public static final int JELLIES_WILDERNESS_TRAVEL = 125;
@@ -13,7 +13,7 @@ public class MortimerConstants {
     public static final int NECHRYAEL_WILDERNESS_KPH = 743;
     public static final int ABYSSAL_DEMONS_WILDERNESS_TRAVEL = 125;
     public static final int ABYSSAL_DEMONS_WILDERNESS_KPH = 791;
-    public static final int TIME_TO_HEART_WILDERNESS =  369394;
+    public static final int TIME_TO_HEART_WILDERNESS = 369394;
 
     public static final String LOCATION_YNYSDAIL = "on Ynysdail via boat teleport";
     public static final String LOCATION_FREMENNIK = "in the Fremennik Slayer Dungeon";
@@ -42,4 +42,13 @@ public class MortimerConstants {
     public static final String WEAPON_LEAFY = "Battleaxe > Sword > ZCB";
     public static final String WEAPON_SUNSPEAR = "Sunspear";
     public static final String WEAPON_DHL = "DHL";
+
+    public static final String PRIORITY_NAME = "Priority Compared to Heart";
+    public static final String PRIORITY_DESCRIPTION = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest";
+    public static final String TRAVEL_NAME = "Travel Time";
+    public static final String TRAVEL_DESCRIPTION = "Total ticks between being fully geared up at the bank and arriving at the task location";
+    public static final String KPH_NAME = "Kills Per Hour";
+    public static final String KPH_DESCRIPTION = "Average kills per hour not including banking and travel time";
+    public static final String WILDY_NAME = "Wilderness";
+    public static final String WILDY_DESCRIPTION = "Whether or not the task is completed in the Wilderness";
 }

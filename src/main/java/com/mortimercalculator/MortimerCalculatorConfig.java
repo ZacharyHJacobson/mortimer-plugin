@@ -94,24 +94,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = aberrantSpectresSection,
 			keyName = "aberrantSpectresZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart aberrantSpectresZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = aberrantSpectresSection,
 			keyName = "aberrantSpectresTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int aberrantSpectresTravelTime() {return 34;}
 	@ConfigItem(
 			position = 2,
 			section = aberrantSpectresSection,
 			keyName = "aberrantSpectresKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int aberrantSpectresKPH() {return 500;}
 
@@ -121,32 +121,32 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = abyssalDemonsSection,
 			keyName = "abyssalDemonsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart abyssalDemonsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = abyssalDemonsSection,
 			keyName = "abyssalDemonsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int abyssalDemonsTravelTime() {return 47;}
 	@ConfigItem(
 			position = 2,
 			section = abyssalDemonsSection,
 			keyName = "abyssalDemonsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int abyssalDemonsKPH() {return 650;}
 	@ConfigItem(
 			position = 3,
 			section = abyssalDemonsSection,
 			keyName = "abyssalDemonsWilderness",
-			name = "Wilderness",
-			description = "Whether or not the task is completed in the Wilderness"
+			name = MortimerConstants.WILDY_NAME,
+			description = MortimerConstants.WILDY_DESCRIPTION
 	)
 	default boolean abyssalDemonsWilderness() {return false;}
 
@@ -156,24 +156,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = aquanitesSection,
 			keyName = "aquanitesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart aquanitesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = aquanitesSection,
 			keyName = "aquanitesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int aquanitesTravelTime() {return 50;}
 	@ConfigItem(
 			position = 2,
 			section = aquanitesSection,
 			keyName = "aquanitesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int aquanitesKPH() {return 200;}
 
@@ -183,24 +183,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = araxytesSection,
 			keyName = "araxytesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart araxytesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = araxytesSection,
 			keyName = "araxytesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int araxytesTravelTime() {return 20;}
 	@ConfigItem(
 			position = 2,
 			section = araxytesSection,
 			keyName = "araxytesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int araxytesKPH() {return 769;}
 
@@ -210,24 +210,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = bansheesSection,
 			keyName = "bansheesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart bansheesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = bansheesSection,
 			keyName = "bansheesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int bansheesTravelTime() {return 27;}
 	@ConfigItem(
 			position = 2,
 			section = bansheesSection,
 			keyName = "bansheesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int bansheesKPH() {return 1333;}
 
@@ -237,24 +237,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = basilisksSection,
 			keyName = "basilisksZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart basilisksZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = basilisksSection,
 			keyName = "basilisksTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int basilisksTravelTime() {return 38;}
 	@ConfigItem(
 			position = 2,
 			section = basilisksSection,
 			keyName = "basilisksKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int basilisksKPH() {return 450;}
 
@@ -264,24 +264,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = bloodveldSection,
 			keyName = "bloodveldZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart bloodveldZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = bloodveldSection,
 			keyName = "bloodveldTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int bloodveldTravelTime() {return 45;}
 	@ConfigItem(
 			position = 2,
 			section = bloodveldSection,
 			keyName = "bloodveldKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int bloodveldKPH() {return 600;}
 
@@ -291,24 +291,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = caveCrawlersSection,
 			keyName = "caveCrawlersZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart caveCrawlersZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = caveCrawlersSection,
 			keyName = "caveCrawlersTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int caveCrawlersTravelTime() {return 5;}
 	@ConfigItem(
 			position = 2,
 			section = caveCrawlersSection,
 			keyName = "caveCrawlersKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int caveCrawlersKPH() {return 1384;}
 
@@ -318,24 +318,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = caveHorrorsSection,
 			keyName = "caveHorrorsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart caveHorrorsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = caveHorrorsSection,
 			keyName = "caveHorrorsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int caveHorrorsTravelTime() {return 75;}
 	@ConfigItem(
 			position = 2,
 			section = caveHorrorsSection,
 			keyName = "caveHorrorsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int caveHorrorsKPH() {return 610;}
 
@@ -345,24 +345,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = cockatriceSection,
 			keyName = "cockatriceZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart cockatriceZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = cockatriceSection,
 			keyName = "cockatriceTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int cockatriceTravelTime() {return 39;}
 	@ConfigItem(
 			position = 2,
 			section = cockatriceSection,
 			keyName = "cockatriceKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int cockatriceKPH() {return 818;}
 
@@ -372,24 +372,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = crawlingHandsSection,
 			keyName = "crawlingHandsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart crawlingHandsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = crawlingHandsSection,
 			keyName = "crawlingHandsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int crawlingHandsTravelTime() {return 7;}
 	@ConfigItem(
 			position = 2,
 			section = crawlingHandsSection,
 			keyName = "crawlingHandsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int crawlingHandsKPH() {return 1565;}
 
@@ -399,24 +399,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = custodianStalkersSection,
 			keyName = "custodianStalkersZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart custodianStalkersZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = custodianStalkersSection,
 			keyName = "custodianStalkersTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int custodianStalkersTravelTime() {return 86;}
 	@ConfigItem(
 			position = 2,
 			section = custodianStalkersSection,
 			keyName = "custodianStalkersKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int custodianStalkersKPH() {return 440;}
 
@@ -426,24 +426,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = darkBeastsSection,
 			keyName = "darkBeastsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart darkBeastsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = darkBeastsSection,
 			keyName = "darkBeastsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int darkBeastsTravelTime() {return 17;}
 	@ConfigItem(
 			position = 2,
 			section = darkBeastsSection,
 			keyName = "darkBeastsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int darkBeastsKPH() {return 205;}
 
@@ -453,24 +453,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = drakesSection,
 			keyName = "drakesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart drakesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = drakesSection,
 			keyName = "drakesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int drakesTravelTime() {return 55;}
 	@ConfigItem(
 			position = 2,
 			section = drakesSection,
 			keyName = "drakesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int drakesKPH() {return 155;}
 
@@ -480,32 +480,32 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = dustDevilsSection,
 			keyName = "dustDevilsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart dustDevilsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = dustDevilsSection,
 			keyName = "dustDevilsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int dustDevilsTravelTime() {return 49;}
 	@ConfigItem(
 			position = 2,
 			section = dustDevilsSection,
 			keyName = "dustDevilsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int dustDevilsKPH() {return 780;}
 	@ConfigItem(
 			position = 3,
 			section = dustDevilsSection,
 			keyName = "dustDevilsWilderness",
-			name = "Wilderness",
-			description = "Whether or not the task is completed in the Wilderness"
+			name = MortimerConstants.WILDY_NAME,
+			description = MortimerConstants.WILDY_DESCRIPTION
 	)
 	default boolean dustDevilsWilderness() {return false;}
 
@@ -515,24 +515,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = gargoylesSection,
 			keyName = "gargoylesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart gargoylesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = gargoylesSection,
 			keyName = "gargoylesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int gargoylesTravelTime() {return 17;}
 	@ConfigItem(
 			position = 2,
 			section = gargoylesSection,
 			keyName = "gargoylesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int gargoylesKPH() {return 380;}
 
@@ -542,24 +542,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = gryphonsSection,
 			keyName = "gryphonsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart gryphonsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = gryphonsSection,
 			keyName = "gryphonsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int gryphonsTravelTime() {return 56;}
 	@ConfigItem(
 			position = 2,
 			section = gryphonsSection,
 			keyName = "gryphonsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int gryphonsKPH() {return 600;}
 
@@ -569,24 +569,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = hydrasSection,
 			keyName = "hydrasZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart hydrasZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = hydrasSection,
 			keyName = "hydrasTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int hydrasTravelTime() {return 45;}
 	@ConfigItem(
 			position = 2,
 			section = hydrasSection,
 			keyName = "hydrasKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int hydrasKPH() {return 149;}
 
@@ -596,24 +596,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = infernalMagesSection,
 			keyName = "infernalMagesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart infernalMagesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = infernalMagesSection,
 			keyName = "infernalMagesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int infernalMagesTravelTime() {return 47;}
 	@ConfigItem(
 			position = 2,
 			section = infernalMagesSection,
 			keyName = "infernalMagesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int infernalMagesKPH() {return 642;}
 
@@ -623,32 +623,32 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = jelliesSection,
 			keyName = "jelliesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart jelliesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = jelliesSection,
 			keyName = "jelliesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int jelliesTravelTime() {return 44;}
 	@ConfigItem(
 			position = 2,
 			section = jelliesSection,
 			keyName = "jelliesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int jelliesKPH() {return 840;}
 	@ConfigItem(
 			position = 3,
 			section = jelliesSection,
 			keyName = "jelliesWilderness",
-			name = "Wilderness",
-			description = "Whether or not the task is completed in the Wilderness"
+			name = MortimerConstants.WILDY_NAME,
+			description = MortimerConstants.WILDY_DESCRIPTION
 	)
 	default boolean jelliesWilderness() {return false;}
 
@@ -658,24 +658,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = kuraskSection,
 			keyName = "kuraskZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart kuraskZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = kuraskSection,
 			keyName = "kuraskTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int kuraskTravelTime() {return 70;}
 	@ConfigItem(
 			position = 2,
 			section = kuraskSection,
 			keyName = "kuraskKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int kuraskKPH() {return 290;}
 
@@ -685,32 +685,32 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = nechryaelSection,
 			keyName = "nechryaelZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart nechryaelZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = nechryaelSection,
 			keyName = "nechryaelTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int nechryaelTravelTime() {return 42;}
 	@ConfigItem(
 			position = 2,
 			section = nechryaelSection,
 			keyName = "nechryaelKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int nechryaelKPH() {return 520;}
 	@ConfigItem(
 			position = 3,
 			section = nechryaelSection,
 			keyName = "nechryaelWilderness",
-			name = "Wilderness",
-			description = "Whether or not the task is completed in the Wilderness"
+			name = MortimerConstants.WILDY_NAME,
+			description = MortimerConstants.WILDY_DESCRIPTION
 	)
 	default boolean nechryaelWilderness() {return false;}
 
@@ -720,24 +720,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = pyrefiendsSection,
 			keyName = "pyrefiendsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart pyrefiendsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = pyrefiendsSection,
 			keyName = "pyrefiendsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int pyrefiendsTravelTime() {return 21;}
 	@ConfigItem(
 			position = 2,
 			section = pyrefiendsSection,
 			keyName = "pyrefiendsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int pyrefiendsKPH() {return 857;}
 
@@ -747,24 +747,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = rockslugsSection,
 			keyName = "rockslugsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart rockslugsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = rockslugsSection,
 			keyName = "rockslugsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int rockslugsTravelTime() {return 32;}
 	@ConfigItem(
 			position = 2,
 			section = rockslugsSection,
 			keyName = "rockslugsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int rockslugsKPH() {return 1125;}
 
@@ -774,24 +774,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = smokeDevilsSection,
 			keyName = "smokeDevilsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart smokeDevilsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = smokeDevilsSection,
 			keyName = "smokeDevilsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int smokeDevilsTravelTime() {return 50;}
 	@ConfigItem(
 			position = 2,
 			section = smokeDevilsSection,
 			keyName = "smokeDevilsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int smokeDevilsKPH() {return 800;}
 
@@ -801,24 +801,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = turothSection,
 			keyName = "turothZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart turothZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = turothSection,
 			keyName = "turothTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int turothTravelTime() {return 50;}
 	@ConfigItem(
 			position = 2,
 			section = turothSection,
 			keyName = "turothKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int turothKPH() {return 383;}
 
@@ -828,24 +828,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = venatorsSection,
 			keyName = "venatorsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart venatorsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = venatorsSection,
 			keyName = "venatorsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int venatorsTravelTime() {return 60;}
 	@ConfigItem(
 			position = 2,
 			section = venatorsSection,
 			keyName = "venatorsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int venatorsKPH() {return 107;}
 
@@ -855,24 +855,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = warpedCreaturesSection,
 			keyName = "warpedCreaturesZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart warpedCreaturesZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = warpedCreaturesSection,
 			keyName = "warpedCreaturesTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int warpedCreaturesTravelTime() {return 70;}
 	@ConfigItem(
 			position = 2,
 			section = warpedCreaturesSection,
 			keyName = "warpedCreaturesKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int warpedCreaturesKPH() {return 457;}
 
@@ -882,24 +882,24 @@ public interface MortimerCalculatorConfig extends Config
 			position = 0,
 			section = wyrmsSection,
 			keyName = "wyrmsZeroTime",
-			name = "Priority Compared to Heart",
-			description = "No Value: task is only for heart<br>Equal Priority: you'd grind this task even if you had the heart<br>Higher Priority: always suggest"
+			name = MortimerConstants.PRIORITY_NAME,
+			description = MortimerConstants.PRIORITY_DESCRIPTION
 	)
 	default PriorityComparedToHeart wyrmsZeroTime() {return PriorityComparedToHeart.NO_VALUE;}
 	@ConfigItem(
 			position = 1,
 			section = wyrmsSection,
 			keyName = "wyrmsTravelTime",
-			name = "Travel Time",
-			description = "Total ticks between being fully geared up at the bank and arriving at the task location"
+			name = MortimerConstants.TRAVEL_NAME,
+			description = MortimerConstants.TRAVEL_DESCRIPTION
 	)
 	default int wyrmsTravelTime() {return 20;}
 	@ConfigItem(
 			position = 2,
 			section = wyrmsSection,
 			keyName = "wyrmsKPH",
-			name = "Kills Per Hour",
-			description = "Average kills per hour not including banking and travel time"
+			name = MortimerConstants.KPH_NAME,
+			description = MortimerConstants.KPH_DESCRIPTION
 	)
 	default int wyrmsKPH() {return 920;}
 }
