@@ -87,6 +87,33 @@ public interface MortimerCalculatorConfig extends Config
 	{
 		return false;
 	}
+	@ConfigItem(
+			position = 3,
+			section = advancedSettingsSection,
+			keyName = "skipSuggestions",
+			name = "Skips",
+			description = "Suggest skipping when the best option is exceptionally slow"
+	)
+	default boolean skipSuggestions() { return true; }
+	@ConfigItem(
+			position = 4,
+			section = advancedSettingsSection,
+			keyName = "pointsPerHour",
+			name = "Points per hour",
+			description = "Estimated points you can obtain per hour through Turael skipping (used for determining when skipping is worth it)"
+	)
+	default int pointsPerHour()
+	{
+		return 300;
+	}
+	@ConfigItem(
+			position = 5,
+			section = advancedSettingsSection,
+			keyName = "blockSuggestions",
+			name = "Blocks",
+			description = "Suggest blocking when one of the worst tasks is suggested"
+	)
+	default boolean blockSuggestions() { return true; }
 
 	@ConfigSection(name = "Aberrant Spectres (Advanced)", description = "Change values used for Aberrant Spectres", position = 1, closedByDefault = true)
 	String aberrantSpectresSection = "Aberrant Spectres (Advanced)";

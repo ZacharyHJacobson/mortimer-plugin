@@ -51,4 +51,6 @@ public class MortimerConstants {
     public static final String KPH_DESCRIPTION = "Average kills per hour not including banking and travel time";
     public static final String WILDY_NAME = "Wilderness";
     public static final String WILDY_DESCRIPTION = "Whether or not the task is completed in the Wilderness";
+
+    public static final String[] BLOCK_PRIORITY = {"Venators", "Hydras", "Wyrms", "Drakes", "Bloodveld", "Aquanites", "Turoth", "Custodian Stalkers", "Warped Creatures", "Kurask", "Gargoyles", "Nechryael", "Gryphons", "Basilisks", "Aberrant Spectres", "Dust Devils", "Cave Horrors", "Infernal Mages", "Jellies", "Abyssal Demons", "Cockatrice", "Pyrefiends", "Rockslugs", "Banshees", "Dark Beasts", "Cave Crawlers", "Crawling Hands", "Araxytes", "Smoke Devils"} ; //order matters less the further it goes on
 }
