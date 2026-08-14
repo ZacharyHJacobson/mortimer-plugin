@@ -2,6 +2,7 @@ package com.mortimercalculator;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.PluginPanel;
@@ -15,11 +16,13 @@ import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.NumberFormat;
-import java.util.Objects;
+import java.util.ArrayList;
 
 @Getter(AccessLevel.PACKAGE)
 public class MortimerCalculatorPanel extends PluginPanel
 {
+    @Setter
+    private MortimerCalculatorOverlay overlay;
     private final MortimerCalculatorPlugin plugin;
     private final MortimerCalculatorConfig config;
 
@@ -145,7 +148,7 @@ public class MortimerCalculatorPanel extends PluginPanel
     private int timePerTask(TaskStats task_stats, float number_killed_with_bracelet)
     {
         int time = config.prepTime() + task_stats.travel_time;
-        time += (int)(number_killed_with_bracelet/task_stats.kills_per_hour * 6000);	//! let users input eventually
+        time += (int)(number_killed_with_bracelet/task_stats.kills_per_hour * MortimerConstants.TICKS_PER_HOUR);
         return time;
     }
 
@@ -176,56 +179,88 @@ public class MortimerCalculatorPanel extends PluginPanel
     }
 
     /**
-     * update the suggestion box JPanel with what the best task is and what bracelet to use
-     * @return index of the best task
+     * update the suggestion box JPanel with what the best task is, whether to skip it, and what bracelet to use
      */
-    public int update()
+    public void update()
     {
-        int[] ticks_wasted = {99999999, 99999999, 99999999};
+        ArrayList<Integer> ticks_wasted_per_task = new ArrayList<>();
         int valid_tasks = 0;
-        for(int box = 0; box < 3; box++)
+        for(Taskbox taskbox : taskboxes)
         {
-            if(taskboxes[box] != null && taskboxes[box].getName() != null)
+            if(taskbox != null && taskbox.getName() != null)
             {
-                if(Objects.equals(taskboxes[box].getName(), "none"))
+                if(taskbox.getName().equals("none"))
                 {
-                    taskboxes[box].ticks_wasted.setText("");
+                    taskbox.ticks_wasted.setText("");
+                    ticks_wasted_per_task.add(99999999);
                 }
                 else
                 {
                     valid_tasks += 1;
-                    taskboxes[box].ticks_wasted.setVisible(config.showTimeWasted());
-                    TaskStats task_stats = new TaskStats(taskboxes[box].getName());
-                    float number_assigned = killsPerTask(taskboxes[box].getAssignMin(), taskboxes[box].getAssignMax(), taskboxes[box].getLengthModifier());
-                    ticks_wasted[box] = calcTicksWasted(task_stats, taskboxes[box].getDropModifier(), number_assigned, false);
-                    taskboxes[box].ticks_wasted.setText(Integer.toString(ticks_wasted[box]));
-                    taskboxes[box].setSuggestion(task_stats.complete_using, task_stats.location);
+                    taskbox.ticks_wasted.setVisible(config.showTimeWasted());
+                    TaskStats task_stats = new TaskStats(taskbox.getName());
+                    float number_assigned = killsPerTask(taskbox.getAssignMin(), taskbox.getAssignMax(), taskbox.getLengthModifier());
+                    int ticks_wasted = calcTicksWasted(task_stats, taskbox.getDropModifier(), number_assigned, false);
+                    ticks_wasted_per_task.add(ticks_wasted);
+                    taskbox.ticks_wasted.setText(Integer.toString(ticks_wasted));
+                    taskbox.setSuggestion(task_stats.complete_using, task_stats.location);
+                    taskbox.setPriority(task_stats.zero_time);
                 }
             }
         }
-        if(valid_tasks > 1)
-        {
-            int best_rating = 99999999;
+        if(valid_tasks > 1) {
+            int best_taskbox_rating = 99999999;
             int best_rating_index = -1;
             // choose the best option and generate output
             for(int rating = 0; rating < 3; rating++)
             {
-                if(ticks_wasted[rating] < best_rating)
+                if (ticks_wasted_per_task.get(rating) < best_taskbox_rating)
                 {
-                    best_rating = ticks_wasted[rating];
+                    best_taskbox_rating = ticks_wasted_per_task.get(rating);
                     best_rating_index = rating;
                 }
             }
+            if(best_rating_index == -1) return;
+            Taskbox best_taskbox = taskboxes[best_rating_index];
+            // check if task should be skipped
+            if (config.skipSuggestions() && best_taskbox_rating > MortimerConstants.TICKS_PER_HOUR / (config.pointsPerHour() / MortimerConstants.SKIP_COST)) {
+                //!check available points
+                Taskbox worst_task = chooseWorstTask();
+                if (worst_task != null) {
+                    //!check if block needed
+                    output_box.setText("Choose and skip " + worst_task.getName() + ".");
+                    return;   //! color yellow
+                }
+            }
             String final_output = "<html>Choose ";
-            final_output += taskboxes[best_rating_index].getName();
+            final_output += best_taskbox.getName();
             final_output += ", and use ";
-            final_output += best_rating < 0 ? "a <b>slaughter</b> bracelet.<br><br><B>USE</B> your slayer cape after the task." : "an <b>expeditious</b> bracelet.<br><br><B>DO NOT</B> use your slayer cape after the task.";
-            final_output += "<br><br>" + taskboxes[best_rating_index].getSuggestion();
+            final_output += best_taskbox_rating < 0 ? "a <b>slaughter</b> bracelet.<br><br><B>USE</B> your slayer cape after the task." : "an <b>expeditious</b> bracelet.<br><br><B>DO NOT</B> use your slayer cape after the task.";
+            final_output += "<br><br>" + best_taskbox.getSuggestion();
             final_output += "</html>";
             output_box.setText(final_output);
-            return(best_rating_index);
+            overlay.setBestTaskIndex(best_rating_index);
         }
-        return -1;
+    }
+
+    /**
+     * Chooses first task that appears in the block priority list and doesn't have an increased selection priority.
+     * Skipped task won't appear next time, so which task to skip matters.
+     * @return index of task most worth skipping or blocking
+     */
+    private Taskbox chooseWorstTask()
+    {
+        for(String task_name : MortimerConstants.BLOCK_PRIORITY)
+        {
+            for(Taskbox taskbox : taskboxes)
+            {
+                if(taskbox.getName().equals(task_name) && taskbox.getPriority() == MortimerCalculatorConfig.PriorityComparedToHeart.NO_VALUE)
+                {
+                    return(taskbox);
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -242,6 +277,8 @@ public class MortimerCalculatorPanel extends PluginPanel
         private final JFormattedTextField magnitude;
         @Getter
         private String suggestion;
+        @Getter @Setter
+        private MortimerCalculatorConfig.PriorityComparedToHeart priority;
 
         public Taskbox()
         {
@@ -366,14 +403,14 @@ public class MortimerCalculatorPanel extends PluginPanel
 
         public int getLengthModifier()
         {
-            if(!Objects.equals(modifier_box.getSelectedItem().toString(), "Assigned")) return 0;
+            if(!modifier_box.getSelectedItem().toString().equals("Assigned")) return 0;
             Number num = (Number) magnitude.getValue();
             return num.intValue();
         }
 
         public int getDropModifier()
         {
-            if(!Objects.equals(modifier_box.getSelectedItem().toString(), "Superior unique chance")) return 0;
+            if(!modifier_box.getSelectedItem().toString().equals("Superior unique chance")) return 0;
             Number num = (Number) magnitude.getValue();
             return num.intValue();
         }
@@ -382,7 +419,7 @@ public class MortimerCalculatorPanel extends PluginPanel
         {
             for(int name_index = 0; name_index < MortimerConstants.MONSTERS.length; name_index++)
             {
-                if(Objects.equals(MortimerConstants.MONSTERS[name_index], name))
+                if(MortimerConstants.MONSTERS[name_index].equals(name))
                     monster_box.setSelectedIndex(name_index);
             }
             assign_min.setValue(task_min);

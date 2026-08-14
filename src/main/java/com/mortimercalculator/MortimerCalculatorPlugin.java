@@ -19,7 +19,6 @@ import net.runelite.client.util.ImageUtil;
 
 import javax.inject.Inject;
 import javax.swing.*;
-import java.awt.*;
 
 @Slf4j
 @PluginDescriptor(
@@ -55,10 +54,11 @@ public class MortimerCalculatorPlugin extends Plugin
 	{
 		overlayManager.add(mortimerCalculatorOverlay);
 		panel = injector.getInstance(MortimerCalculatorPanel.class);
+		panel.setOverlay(mortimerCalculatorOverlay);
+		mortimerCalculatorOverlay.setPanel(panel);
 		navButton = NavigationButton.builder().tooltip("Mortimer Calculator").icon(ImageUtil.loadImageResource(getClass(), "/mortpanel.png")).panel(panel).build();
 		updateNavButton();
 		TaskStats.config = config;
-		//! give skip advice based on number assigned
 	}
 
 	@Subscribe
@@ -103,37 +103,10 @@ public class MortimerCalculatorPlugin extends Plugin
 			clientToolbar.addNavigation(navButton);
 			SwingUtilities.invokeLater(() -> clientToolbar.openPanel(navButton));
 			mortimer_open = true;
-			updateOverlay(task_widget);
+			mortimerCalculatorOverlay.setTaskWidget(task_widget);
+			panel.update();
 		}
 		updateNavButton();
-	}
-
-	/**
-	 * update the overlay with the widget for the best available Mortimer task
-	 * @param task_widget parent Widget for the components of Mortimer's UI
-	 */
-	private void updateOverlay(Widget task_widget)
-	{
-		Widget[] subwidgets = task_widget.getDynamicChildren();
-		Widget[] task_widgets = new Widget[3];
-		int matches = 0;
-		for(int x = 1; x < subwidgets.length- 4; x++)
-		{
-			// quantity subwidget is one index after the task name and four subwidgets before the modifier subwidget
-			if(subwidgets[x].getText().contains("Amount: "))
-			{
-				panel.update_task(matches,
-						subwidgets[x-1].getText().split(">")[1],
-						Integer.parseInt(subwidgets[x].getText().split("Amount: ")[1].split(" to ")[0]),
-						Integer.parseInt(subwidgets[x].getText().split(" to ")[1]),
-						subwidgets[x+4].getText().substring(subwidgets[x+4].getText().indexOf(" ") + 1),
-						Integer.parseInt(subwidgets[x+4].getText().split(" ")[0].split("%")[0]));
-				task_widgets[matches] = subwidgets[x-2];
-				matches += 1;
-			}
-		}
-		Widget best_task_widget = task_widgets[panel.update()];
-		mortimerCalculatorOverlay.updateTaskWidget(best_task_widget);
 	}
 
 	@Override
