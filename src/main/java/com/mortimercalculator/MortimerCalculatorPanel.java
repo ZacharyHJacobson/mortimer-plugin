@@ -40,7 +40,7 @@ public class MortimerCalculatorPanel extends PluginPanel
 
         for(int box_number = 0; box_number < 3; box_number++)
         {
-            Taskbox box = new Taskbox();
+            Taskbox box = new Taskbox(box_number);
             taskboxes[box_number] = box;
             add(box.task_box);
         }
@@ -229,7 +229,8 @@ public class MortimerCalculatorPanel extends PluginPanel
                 if (worst_task != null) {
                     //!check if block needed
                     output_box.setText("Choose and skip " + worst_task.getName() + ".");
-                    return;   //! color yellow
+                    overlay.setHighlightedTaskIndex(worst_task.location, Color.YELLOW);
+                    return;
                 }
             }
             String final_output = "<html>Choose ";
@@ -239,7 +240,7 @@ public class MortimerCalculatorPanel extends PluginPanel
             final_output += "<br><br>" + best_taskbox.getSuggestion();
             final_output += "</html>";
             output_box.setText(final_output);
-            overlay.setBestTaskIndex(best_rating_index);
+            overlay.setHighlightedTaskIndex(best_rating_index, Color.GREEN);
         }
     }
 
@@ -268,6 +269,7 @@ public class MortimerCalculatorPanel extends PluginPanel
      */
     public class Taskbox
     {
+        int location = 0;   //! use more places
         public JPanel task_box;
         public JLabel ticks_wasted;
         private final JComboBox<String> monster_box;
@@ -280,8 +282,9 @@ public class MortimerCalculatorPanel extends PluginPanel
         @Getter @Setter
         private MortimerCalculatorConfig.PriorityComparedToHeart priority;
 
-        public Taskbox()
+        public Taskbox(int location_index)
         {
+            location = location_index;
             task_box = new JPanel()
             {
                 @Override protected void paintComponent(Graphics graphics)

@@ -11,6 +11,8 @@ import java.awt.*;
 
 public class MortimerCalculatorOverlay extends Overlay
 {
+    private Color highlight_color = Color.GREEN;
+
     private final MortimerCalculatorPlugin plugin;
     Widget[] task_widgets = new Widget[3];
     private int best_task_id;
@@ -26,8 +28,9 @@ public class MortimerCalculatorOverlay extends Overlay
         setLayer(OverlayLayer.ABOVE_WIDGETS);
     }
 
-    public void setBestTaskIndex(int new_best_task_index)
+    public void setHighlightedTaskIndex(int new_best_task_index, Color new_highlight_color)
     {
+        highlight_color = new_highlight_color;
         best_task_id = new_best_task_index;
     }
 
@@ -68,7 +71,7 @@ public class MortimerCalculatorOverlay extends Overlay
             else
             {
                 Rectangle bestTaskRect = task_widgets[best_task_id].getBounds();
-                graphics.setColor(Color.GREEN);
+                graphics.setColor(highlight_color);
                 graphics.draw(bestTaskRect);
             }
         }
