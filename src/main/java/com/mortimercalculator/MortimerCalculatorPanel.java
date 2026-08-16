@@ -161,6 +161,7 @@ public class MortimerCalculatorPanel extends PluginPanel
      * @param base_superiors_per_heart task-specific droprate before modifier
      * @param number_killed_with_bracelet average monsters killed during the task
      * @param drop_modifier the percentage increase, ie +300% would be 300, not 3
+     * @param kills_per_superior expected kills per superior accounting for combat achievements and wilderness spawn rates
      * @return expected tasks per heart
      */
     private float tasksPerHeart(int base_superiors_per_heart, float number_killed_with_bracelet, int drop_modifier, int kills_per_superior)
@@ -174,6 +175,8 @@ public class MortimerCalculatorPanel extends PluginPanel
      * update a specific taskbox in the side panel
      * @param id taskbox id, 0 1 or 2
      * @param name task name
+     * @param task_min minimum task size before modifier
+     * @param task_max maximum task size before modifier
      * @param modifier modifier name
      * @param magnitude positive or negative variant of the modifier
      */
@@ -253,7 +256,7 @@ public class MortimerCalculatorPanel extends PluginPanel
     /**
      * Chooses first task that appears in the block priority list and doesn't have an increased selection priority.
      * Skipped task won't appear next time, so which task to skip matters.
-     * @return index of task most worth skipping or blocking
+     * @return task most worth skipping or blocking
      */
     private Taskbox chooseWorstTask()
     {

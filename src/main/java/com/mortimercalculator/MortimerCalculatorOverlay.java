@@ -28,10 +28,10 @@ public class MortimerCalculatorOverlay extends Overlay
         setLayer(OverlayLayer.ABOVE_WIDGETS);
     }
 
-    public void setHighlightedTaskIndex(int new_best_task_index, Color new_highlight_color)
+    public void setHighlightedTaskIndex(int best_task_index, Color highlight_color)
     {
-        highlight_color = new_highlight_color;
-        best_task_id = new_best_task_index;
+        this.highlight_color = highlight_color;
+        this.best_task_id = best_task_index;
     }
 
     /**
