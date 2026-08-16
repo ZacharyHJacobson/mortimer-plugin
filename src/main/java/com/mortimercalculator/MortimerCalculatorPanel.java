@@ -3,6 +3,8 @@ package com.mortimercalculator;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import net.runelite.api.gameval.VarbitID;
+import net.runelite.api.Client;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.PluginPanel;
@@ -23,6 +25,7 @@ public class MortimerCalculatorPanel extends PluginPanel
 {
     @Setter
     private MortimerCalculatorOverlay overlay;
+    private final Client client;
     private final MortimerCalculatorPlugin plugin;
     private final MortimerCalculatorConfig config;
 
@@ -31,8 +34,9 @@ public class MortimerCalculatorPanel extends PluginPanel
     private JLabel output_box = null;
 
     @Inject
-    private MortimerCalculatorPanel(MortimerCalculatorPlugin plugin, MortimerCalculatorConfig config)
+    private MortimerCalculatorPanel(Client client, MortimerCalculatorPlugin plugin, MortimerCalculatorConfig config)
     {
+        this.client = client;
         this.plugin = plugin;
         this.config = config;
 
@@ -224,13 +228,15 @@ public class MortimerCalculatorPanel extends PluginPanel
             Taskbox best_taskbox = taskboxes[best_rating_index];
             // check if task should be skipped
             if (config.skipSuggestions() && best_taskbox_rating > MortimerConstants.TICKS_PER_HOUR / (config.pointsPerHour() / MortimerConstants.SKIP_COST)) {
-                //!check available points
-                Taskbox worst_task = chooseWorstTask();
-                if (worst_task != null) {
-                    //!check if block needed
-                    output_box.setText("Choose and skip " + worst_task.getName() + ".");
-                    overlay.setHighlightedTaskIndex(worst_task.location, Color.YELLOW);
-                    return;
+                if(client.getVarbitValue(VarbitID.SLAYER_POINTS) >= MortimerConstants.SKIP_COST)
+                {
+                    Taskbox worst_task = chooseWorstTask();
+                    if (worst_task != null) {
+                        //!check if block needed
+                        output_box.setText("Choose and skip " + worst_task.getName() + ".");
+                        overlay.setHighlightedTaskIndex(worst_task.location, Color.YELLOW);
+                        return;
+                    }
                 }
             }
             String final_output = "<html>Choose ";
