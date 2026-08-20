@@ -113,8 +113,8 @@ public class TaskStats
                 }
                 else
                 {
-                    location = MortimerConstants.LOCATION_YNYSDAIL;
-                    complete_using = MortimerConstants.WEAPON_VENATOR;
+                    location = MortimerConstants.LOCATION_CATACOMBS;
+                    complete_using = MortimerConstants.WEAPON_BARRAGE;
                 }
                 break;
             case "Custodian Stalkers":
